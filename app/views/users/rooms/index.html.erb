@@ -1,0 +1,28 @@
+<div class="post-list">
+  <% @posts.each do |post| %>
+    <%= post.title %>
+  <% end %>
+
+</div>
+
+<div class="time-tag-list">
+  <p>時間指定タグ</p>
+  <% @time_tags.each do |time_tag| %>
+    <%= time_tag.span %>
+  <% end %>
+</div>
+<div class="ocuupation-tag-list">
+  <p>業種タグ</p>
+  <% @ocuupation_tags.each do |ocuupation_tag| %>
+    <%= ocuupation_tag.name %>
+  <% end %>
+</div>
+<div class="room-list">
+  <p>ルーム一覧</p>
+  <% @rooms.each do |room| %>
+    <%= room.title %>
+    <%= room.time_tag.span %>
+    <%= room.ocuupation_tag.name %>
+    <%= link_to "ルーム詳細", users_room_path(current_user) %>
+  <% end %>
+</div>
