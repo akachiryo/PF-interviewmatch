@@ -6,10 +6,10 @@ private
   def after_sign_in_path_for(resource)
     case resource
       when Admin
-        flash[:notice] = "ログインしました"
+        flash[:notice] = "adminログインしました"
         users_rooms_path
       when User
-        flash[:notice] = "adminログインしました"
+        flash[:notice] = "ログインしました"
         users_rooms_path
     end
   end

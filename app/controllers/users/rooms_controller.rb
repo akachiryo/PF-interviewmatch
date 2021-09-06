@@ -7,7 +7,7 @@ class Users::RoomsController < ApplicationController
     @time_tags = TimeTag.all
     @ocuupation_tags = OcuupationTag.all
   end
-  
+
   def show
     @room = Room.find(params[:id])
   end
@@ -17,8 +17,18 @@ class Users::RoomsController < ApplicationController
     @time_tags = TimeTag.all
     @ocuupation_tags = OcuupationTag.all
   end
-  
 
+  def search
+    @time_tag_id = params[:time_tag_id]
+    @ocuupation_tag_id = params[:ocuupation_tag_id]
+    if @time_tag_id.present?
+      @rooms = TimeTag.find(@time_tag_id).rooms
+    elsif @ocuupation_tag_id.present?
+      @rooms = OcuupationTag.find(@ocuupation_tag_id).rooms
+    end
+    @time_tags = TimeTag.all
+    @ocuupation_tags = OcuupationTag.all
+  end
 
   def create
     room = Room.new(room_params)

@@ -1,0 +1,7 @@
+<p>ルーム一覧</p>
+<% @rooms.each do |room| %>
+  <%= room.title %>
+  <%= room.time_tag.span %>
+  <%= room.ocuupation_tag.name %>
+  <%= link_to "ルーム詳細", users_room_path(current_user) %>
+<% end %>

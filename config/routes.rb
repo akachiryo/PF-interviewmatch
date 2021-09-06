@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  
-  get 'search' => 'rooms#search'
 
   namespace :users do
+    get 'rooms/search' => 'rooms#search'
     resources :rooms
   end
-  
+
   namespace :admins do
     resources :rooms
     resources :time_tags
