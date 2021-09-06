@@ -1,0 +1,12 @@
+<h1>timetags</h1>
+<%= form_with model: @time_tag, url: admins_time_tags_path, local: true do |f| %>
+  <%= f.label :span, "時間指定名" %>
+  <%= f.text_field :span %>
+  <%= f.submit "時間作成" %>
+<% end %>
+
+<h2>時間指定一覧</h2>
+<% @time_tags.each do |time_tag| %>
+  <%= time_tag.span %>
+  <%= link_to "編集",  edit_admins_time_tag_path(time_tag) %>
+<% end %>

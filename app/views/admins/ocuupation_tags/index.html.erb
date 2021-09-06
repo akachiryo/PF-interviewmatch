@@ -1,0 +1,13 @@
+
+<h1>ocuupationtags</h1>
+<%= form_with model: @ocuupation_tag, url: admins_ocuupation_tags_path, local: true do |f| %>
+  <%= f.label :name, "職種" %>
+  <%= f.text_field :name %>
+  <%= f.submit "職種作成" %>
+<% end %>
+
+<h2>職種一覧</h2>
+<% @ocuupation_tags.each do |ocuupation_tag| %>
+  <%= ocuupation_tag.name %>
+  <%= link_to "編集",  edit_admins_ocuupation_tag_path(ocuupation_tag) %>
+<% end %>
