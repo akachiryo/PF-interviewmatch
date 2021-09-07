@@ -3,14 +3,20 @@
     <%= link_to "MennRenn", root_path, class: "fs-4 d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" %>
 
     <ul class="nav nav-pills">
-      <li class="nav-item"><%= link_to "マイページ", root_path, class: "nav-link active" %></li>
-      <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link active" %></li>
-      <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link active" %></li>
-      <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path(current_user), method: :delete, class: "nav-link active" %></li>
-      <li class="nav-item"><%= link_to "ルーム一覧", users_rooms_path, class: "nav-link active" %></li>
-      <li class="nav-item"><%= link_to "ルーム作成", new_users_room_path, class: "nav-link active" %></li>
-      <li class="nav-item"><%= link_to "adminログイン", new_admin_session_path, class: "nav-link active" %></li>
-      <li class="nav-item"><%= link_to "adminログアウト", destroy_admin_session_path(current_admin), method: :delete, class: "nav-link active" %></li>
+      <% if user_signed_in? %>
+        <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path(current_user), method: :delete, class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "ルーム一覧", users_rooms_path, class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "ルーム作成", new_users_room_path, class: "nav-link active" %></li>
+      <% elsif admin_signed_in? %>
+        <li class="nav-item"><%= link_to "adminログアウト", destroy_admin_session_path(current_admin), method: :delete, class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "時間指定一覧", admins_time_tags_path, class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "職種一覧", admins_ocuupation_tags_path, class: "nav-link active" %></li>
+      <% else %>
+        <li class="nav-item"><%= link_to "adminログイン", new_admin_session_path, class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link active" %></li>
+      <% end %>
     </ul>
   </div>
 </header>
