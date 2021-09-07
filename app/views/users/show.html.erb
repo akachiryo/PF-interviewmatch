@@ -1,0 +1,29 @@
+<h2>マイページ</h2>
+<span>登録情報</span>
+<%= link_to "編集する", edit_user_path(current_user), class: "btn btn-sm btn-secondary col-2 mb-5" %>
+  <table class="table table-bordered confirm_table", style="width: 70%">
+    <tbody>
+      <tr>
+        <td>ニックネーム</td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <td >メールアドレス</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>プロフィール画像</td>
+        <td>
+          <% if @user.image.attached? %>
+            <%= image_tag @user.image.variant(resize:"100x100") %>
+          <% else %>
+            <%= image_tag "Nophoto.jpg", size: "100x100" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>自己紹介</td>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </tbody>
+  </table>
