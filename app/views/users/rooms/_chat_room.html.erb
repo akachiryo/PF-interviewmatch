@@ -1,0 +1,20 @@
+<h2><%= room.title %></h2>
+<div class="message-list">
+  <% room_chats.each do |room_chat| %>
+    <% if room_chat.user.image.attached? %>
+      <p><%= image_tag room_chat.user.image.variant(resize:"100x100") %><%= room_chat.message %></p>
+    <% else %>
+      <p><%= image_tag "Nophoto.jpg", size: "100x100" %><%= room_chat.message %></p>
+    <% end %>
+  <% end %>
+</div>
+<div class="input_form">
+<%= form_with model: room_chat, url: users_room_chats_path(room_id: room.id), local: true do |f| %>
+  <div class="form-inline">
+    <%= f.label :message, "メッセージ", class:"col-1 mt-5" %>
+    <%= f.text_area :message, class:"offset-1 col-3", autofocus: true %>
+  </div>
+ <%= f.submit "送信する", class: "btn btn-success offset-2 col-2 mt-5" %>
+<% end %>
+<%= link_to "面接練習を終わる", users_room_chat_path, method: :delete, local: true %>
+</div>

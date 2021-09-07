@@ -7,4 +7,7 @@ class User < ApplicationRecord
    has_one_attached :image
 
    has_many :rooms, dependent: :destroy
+   has_many :user_rooms, dependent: :destroy
+   has_many :room_chats, dependent: :destroy
+
 end

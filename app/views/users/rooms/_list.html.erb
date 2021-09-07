@@ -7,7 +7,7 @@
       <%= room.ocuupation_tag.name %>
     </div>
     <div><%= room.title %></div>
-    <%= link_to "ルーム詳細", users_rooms_path %>
+    <%= link_to "ルーム詳細", users_room_path(room) %>
   </div>
 <% end %>
 <%= paginate @rooms %>
