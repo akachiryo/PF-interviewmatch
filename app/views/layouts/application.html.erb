@@ -12,8 +12,10 @@
   <body>
 
     <%= render "layouts/header" %>
-    <%= flash[:notice] %>
-    <%= yield %>
+    <div class="container">
+      <%= flash[:notice] %>
+      <%= yield %>
+    </div>
     <%= render "layouts/footer" %>
   </body>
 </html>
