@@ -1,4 +1,5 @@
-<%= @room.title %>
-<%= @room.content %>
-<%= @room.time_tag.span %>
-<%= @room.ocuupation_tag.name %>
+<% if UserRoom.where(room_id: @room.id).count >= 2 %>
+  <%= render "users/rooms/chat_room", room: @room, room_chat: @room_chat, room_chats: @room_chats %>
+<% else %>
+  <%= render "users/rooms/detail", room: @room %>
+<% end %>

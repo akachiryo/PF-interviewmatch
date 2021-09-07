@@ -10,6 +10,8 @@ class Users::RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @room_chat = RoomChat.new
+    @room_chats = RoomChat.where(room_id: @room.id).reverse
   end
 
   def new
@@ -33,9 +35,14 @@ class Users::RoomsController < ApplicationController
   end
 
   def create
+
     room = Room.new(room_params)
     room.user_id = current_user.id
     if room.save
+      user_room = UserRoom.new
+      user_room.user_id = room.user_id
+      user_room.room_id = room.id
+      user_room.save
       redirect_to users_rooms_path
     else
       @room = Room.new
@@ -43,8 +50,19 @@ class Users::RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    @room = Room.find(params[:id])
+    if @room.destroy
+      redirect_to users_rooms_path
+    else
+      render :show
+    end
+  end
+
   private
+
     def room_params
       params.require(:room).permit(:user_id, :time_tag_id, :ocuupation_tag_id, :title, :content)
     end
+
 end

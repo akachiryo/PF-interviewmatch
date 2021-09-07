@@ -1,0 +1,6 @@
+<div><%= room.title %></div>
+<div><%= room.content %></div>
+<div><%= room.time_tag.span %></div>
+<div><%= room.ocuupation_tag.name %></div>
+<%= link_to "ルームに入室する", users_user_rooms_path(user_id: current_user.id,room_id: room.id), method: :post, local: true %>
+<%= link_to "ルームを削除する", users_room_path(room), method: :delete, local: true %>
