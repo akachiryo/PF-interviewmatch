@@ -13,9 +13,9 @@
         <td>プロフィール画像</td>
         <td>
           <% if user.image.attached? %>
-            <%= image_tag user.image.variant(resize:"100x100") %>
+            <%= image_tag user.image.variant(resize:"100x100"), class:"image-radius" %>
           <% else %>
-            <%= image_tag "Nophoto.jpg", size: "100x100" %>
+            <%= image_tag "Nophoto.jpg", size: "100x100", class:"image-radius" %>
           <% end %>
         </td>
       </tr>

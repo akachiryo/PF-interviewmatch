@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-
-  devise_for :admins
   devise_for :users
+  devise_for :admins
+
 
   namespace :users do
     get "rooms/search" => "rooms#search"
