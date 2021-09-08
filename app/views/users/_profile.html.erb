@@ -1,0 +1,44 @@
+<table class="table table-bordered confirm_table", style="width: 70%">
+
+    <tbody>
+      <tr>
+        <td>ニックネーム</td>
+        <td><%= user.name %></td>
+      </tr>
+      <tr>
+        <td >メールアドレス</td>
+        <td><%= user.email %></td>
+      </tr>
+      <tr>
+        <td>プロフィール画像</td>
+        <td>
+          <% if user.image.attached? %>
+            <%= image_tag user.image.variant(resize:"100x100") %>
+          <% else %>
+            <%= image_tag "Nophoto.jpg", size: "100x100" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>自己紹介</td>
+        <td><%= user.introduction %></td>
+      </tr>
+      <% if current_user.id != user.id %>
+        <tr>
+          <td>
+            <% if current_user.following?(user) %>
+              <%= form_with model: @relationship, url: users_relationship_path(@relationship.pluck("id").slice(0)), method: :delete, local: true do |f| %>
+                <%= f.submit "フォローを解除する" %>
+              <% end %>
+            <% else %>
+              <%= form_with model: @relationship, url: users_relationships_path(follow_id: user.id), local: true do |f| %>
+                <%= f.submit "フォロー" %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
