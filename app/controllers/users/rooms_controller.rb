@@ -34,8 +34,19 @@ class Users::RoomsController < ApplicationController
     @ocuupation_tags = OcuupationTag.all
   end
 
-  def create
+  def finish
+    @room_id = UserRoom.where(user_id: current_user.id).pluck("room_id")
+    @user_id = UserRoom.where(room_id: @room_id).where.not(user_id: current_user.id).pluck("user_id")
+    @user = User.find(@user_id.slice(0))
+    @room = Room.find(@room_id.slice(0))
+    if current_user.following?(@user)
+      @relationship = Relationship.where(user_id: current_user.id, follow_id: @user.id)
+    else
+      @relationship = Relationship.new
+    end
+  end
 
+  def create
     room = Room.new(room_params)
     room.user_id = current_user.id
     if room.save

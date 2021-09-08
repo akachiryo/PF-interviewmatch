@@ -5,9 +5,11 @@ Rails.application.routes.draw do
 
   namespace :users do
     get "rooms/search" => "rooms#search"
+    get "rooms/finish" => "rooms#finish"
     resources :rooms
     resources :user_rooms, only: [:create]
     resources :room_chats, only: [:create, :destroy]
+    resources :relationships, only: [:create, :destroy]
   end
 
   namespace :admins do

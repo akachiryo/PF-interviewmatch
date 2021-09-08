@@ -17,9 +17,8 @@ class Users::RoomChatsController < ApplicationController
 
   def destroy
     @room = Room.find(params[:id])
-    if user_rooms = UserRoom.where(room_id: @room.id).destroy_all
-      @room.destroy
-      redirect_to users_rooms_path
+    if @room.destroy
+      redirect_to  users_rooms_path
     else
       @room = Room.find(room_id)
       render "users/rooms/show"
