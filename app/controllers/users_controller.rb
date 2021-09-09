@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
+
+  before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
+    @relationship = current_user.relationships.find_by(follow_id: @user.id)
+    @set_relationship = current_user.relationships.new
   end
 
   def edit
@@ -15,6 +20,8 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+
 
   private
     def user_params

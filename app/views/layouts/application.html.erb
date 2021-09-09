@@ -10,12 +10,18 @@
   </head>
 
   <body>
+    <header class=" py-3 border-bottom">
+      <%= render "layouts/header" %>
+    </header>
 
-    <%= render "layouts/header" %>
-    <div class="container">
-      <%= flash[:notice] %>
-      <%= yield %>
-    </div>
-    <%= render "layouts/footer" %>
+    <main>
+      <div class="container ">
+        <%= flash[:notice] %>
+        <%= yield %>
+      </div>
+    </main>
+    <footer class=" py-3 mb-4 border-top">
+      <%= render "layouts/footer" %>
+    </footer>
   </body>
 </html>

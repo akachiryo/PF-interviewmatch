@@ -1,4 +1,9 @@
-<%= @room.title %>
-<%= @room.content %>
-<%= @room.time_tag.span %>
-<%= @room.ocuupation_tag.name %>
+<% if UserRoom.where.not(room_id: @room.id).pluck("user_id").include?(current_user.id) %>
+  <%= render "users/rooms/practice_continue" %>
+<% elsif UserRoom.where(room_id: @room.id).count == 2 && UserRoom.where(room_id: @room.id).pluck("user_id").include?(current_user.id) %>
+  <%= render "users/rooms/chat_room", room: @room, room_chat: @room_chat, room_chats: @room_chats %>
+<% elsif  UserRoom.where(room_id: @room.id).count <= 1 %>
+  <%= render "users/rooms/detail", room: @room %>
+<% else %>
+  <%= render "users/rooms/no_vacancy", room: @room %>
+<% end %>
