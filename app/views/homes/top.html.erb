@@ -1,6 +1,6 @@
 <div class="main-view row ">
-  <div class="col-lg-1"></div>
-  <div class="main-view-left col-lg-6 ps-5">
+  <div class="col-lg-2"></div>
+  <div class="main-view-left col-lg-5 ps-5 mt-3">
     <div><p class="heading h1">気軽に面接練習しませんか？</p></div>
     <div><p>面接が苦手？このアプリを使えば、面接相手をマッチングできます。<br>時間・業種は選択できます。一緒に面接で成功しよう。</p></div>
     <div><%= link_to "新規登録はこちら", new_user_registration_path, class: "btn btn-outline-info btn-lg" %></div>
@@ -10,11 +10,16 @@
   </div>
   <div class="col-lg-1"></div>
 </div>
-<div class="main-view-under row">
+<div class="main-view-under row pt-5">
   <div class="col-sm-1"></div>
-  <div class="main-view-under-left col-sm-2">q</div>
-  <div class="main-view-under-right room-lists d-flex align-items-center flex-column col-sm-9">
+  <div class="main-view-under-left col-sm-3">
+    <p class="fs-4">タグ検索</p>
+    <%= render "admins/tag_list" %>
+  </div>
+  <div class="main-view-under-right room-lists d-flex align-items-center flex-column col-sm-7">
     <p class="fs-4">新着ルーム</p>
     <%= render "users/rooms/list", rooms: @rooms  %>
   </div>
+  <div class="col-sm-1"></div>
 </div>
+

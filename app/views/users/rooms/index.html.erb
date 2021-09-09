@@ -1,9 +1,12 @@
-<div class="time-tag-list">
-  <%= render "users/rooms/time_tag", time_tags: @time_tags %>
-</div>
-<div class="ocuupation-tag-list">
-  <%= render "users/rooms/ocuupation_tag", ocuupation_tags: @ocuupation_tags  %>
-</div>
-<div class="room-lists">
-  <%= render "users/rooms/list", rooms: @rooms  %>
+<div class="main-view-under row pt-5">
+  <div class="col-sm-1"></div>
+  <div class="main-view-under-left col-sm-3">
+    <p class="fs-4">タグ検索</p>
+    <%= render "admins/tag_list" %>
+  </div>
+  <div class="main-view-under-right room-lists d-flex align-items-center flex-column col-sm-7">
+    <p class="fs-4">新着ルーム</p>
+    <%= render "users/rooms/list", rooms: @rooms  %>
+  </div>
+  <div class="col-sm-1"></div>
 </div>
