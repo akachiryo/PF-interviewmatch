@@ -46,7 +46,8 @@
             </div>
           <% else %>
             <div class="my-edit text-center pt-3">
-              <%= link_to "     編集する    ", edit_user_path(current_user), class: "btn btn-outline-secondary btn-lg" %>
+              <p><%= link_to "    　 編集する   　 ", edit_user_path(current_user), class: "btn btn-outline-secondary" %></p>
+              <p><%= link_to " スケジュール  ", users_schedules_path(current_user), class: "btn btn-outline-primary" %></p>
             </div>
           <% end %>
         </div>
