@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admins
 
-
   namespace :users do
     get "rooms/search" => "rooms#search"
     get "rooms/finish" => "rooms#finish"
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
     resources :user_rooms, only: [:create]
     resources :room_chats, only: [:create, :destroy]
     resources :relationships, only: [:create, :destroy]
+    resources :schedules
   end
 
   namespace :admins do

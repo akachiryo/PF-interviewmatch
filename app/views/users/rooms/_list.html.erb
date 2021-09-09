@@ -1,4 +1,4 @@
-<% @rooms.each do |room| %>
+<% rooms.each do |room| %>
   <div class="room-list mb-3 row">
     <div class="room_list-left col-5">
       <% if room.user.image.attached? %>
@@ -17,4 +17,4 @@
     </div>
   </div>
 <% end %>
-<%= paginate @rooms %>
+<%= paginate rooms %>

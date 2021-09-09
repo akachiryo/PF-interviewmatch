@@ -5,6 +5,9 @@ class Users::RelationshipsController < ApplicationController
     relationship.user_id = current_user.id
     relationship.follow_id = params[:follow_id]
 
+    p '----'
+    p request.referer&.include?('finish')
+    p '----'
     if relationship.save
       flash[:success] = 'ユーザーをフォローしました'
       redirect_to users_rooms_finish_path
