@@ -1,0 +1,2 @@
+class ChangeUserIdColumnOnSchedule < ApplicationRecord
+end
