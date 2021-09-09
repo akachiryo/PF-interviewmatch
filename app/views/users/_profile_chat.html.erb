@@ -32,11 +32,11 @@
           <% if current_user.id != user.id %>
             <div class="follow-btn text-center">
                 <% if current_user.following?(user) %>
-                  <%= form_with url: users_relationship_path(Relationship.where(user_id: current_user, follow_id: user.id).pluck("id").slice(0)), method: :delete, local: true do |f| %>
+                  <%= form_with model: @relationship, url: users_relationship_path(@relationship.pluck("id").slice(0)), method: :delete, local: true do |f| %>
                     <%= f.submit "フォローを解除する", class: "btn btn-outline-danger mb-4" %>
                   <% end %>
                 <% else %>
-                  <%= form_with model: relationship, url: users_relationships_path(follow_id: user.id), local: true do |f| %>
+                  <%= form_with model: @relationship, url: users_relationships_path(follow_id: user.id), local: true do |f| %>
                     <%= f.submit "       フォローする      ", class: "btn btn-outline-info" %>
                   <% end %>
               　<% end %>
