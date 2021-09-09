@@ -42,7 +42,10 @@
               　<% end %>
             </div>
             <div class="btn btn-outline-primary text-center mb-0">
-             メッセージを送る
+              <%= form_with model: @room, url: users_dmrooms_path, local: true do |f| %>
+                <%= f.hidden_field :user_id, value: user.id %>
+                <%= f.submit "チャットを始める" %>
+              <% end %>
             </div>
           <% else %>
             <div class="my-edit text-center pt-3">

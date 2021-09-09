@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :room_chats, only: [:create, :destroy]
     resources :relationships, only: [:create, :destroy]
     resources :schedules
+    resources :dmmessages, only: [:create]
+    resources :dmrooms, only: [:create,:show]
   end
 
   namespace :admins do

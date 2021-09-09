@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_135108) do
+ActiveRecord::Schema.define(version: 2021_09_09_154515) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -41,6 +41,30 @@ ActiveRecord::Schema.define(version: 2021_09_09_135108) do
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "dmmessages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "dmroom_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dmroom_id"], name: "index_dmmessages_on_dmroom_id"
+    t.index ["user_id"], name: "index_dmmessages_on_user_id"
+  end
+
+  create_table "dmrooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "dmroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dmroom_id"], name: "index_entries_on_dmroom_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "ocuupation_tags", force: :cascade do |t|
