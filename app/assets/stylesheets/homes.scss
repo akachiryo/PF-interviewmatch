@@ -4,7 +4,33 @@
 
 
 // ホーム画面
-.main-view h1 {
-  color: #0dcaf0;
-  height: 200px;
+
+.main-view {
+  height: 400px;
+  padding-top: 5%;
+  background-color: #EEFFFF;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
+.main-view-left {
+  padding-left: 10px;
+}
+
+.heading {
+  color: #0dcaf0;
+  font-family: monospace;
+}
+
+.main-view-under {
+  background-color: #f5f5f5;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 20%;
+  margin-right: 60%;
+}
+

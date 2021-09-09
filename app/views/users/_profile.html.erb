@@ -1,44 +1,63 @@
-<table class="table table-bordered confirm_table", style="width: 70%">
+<div class="profile-header row">
+  <div class="col-sm-1"></div>
+  <div class="profile-image text-center col-sm-1">
+   <% if user.image.attached? %>
+      <%= image_tag user.image.variant(resize:"100x100"), class:"image-radius" %>
+    <% else %>
+      <%= image_tag "noimage.png", size: "100x100", class:"image-radius" %>
+    <% end %>
+  </div>
+  <div class="profile-name col-sm-4 d-flex align-items-center ms-5 row">
+    <p class="fs-2"><%= user.name %></p>
+    <% if current_user.id == user.id %>
+      <p class="fs-5"><%= user.email %></p>
+    <% end %>
+  </div>
+</div>
 
-    <tbody>
-      <tr>
-        <td>ニックネーム</td>
-        <td><%= user.name %></td>
-      </tr>
-      <tr>
-        <td >メールアドレス</td>
-        <td><%= user.email %></td>
-      </tr>
-      <tr>
-        <td>プロフィール画像</td>
-        <td>
-          <% if user.image.attached? %>
-            <%= image_tag user.image.variant(resize:"100x100") %>
+<div class="profile-main">
+  <div class="profile-left pt-5">
+    <div class="my-relationship p-3">
+      <div class="col-sm-1"></div>
+      <div class="my-relationship-follow col-sm-2">
+        <p >フォロー中</p>
+        <p><%= user.followings.count %>人</p>
+      </div>
+      <div class="col-sm-1"></div>
+      <div class="my-relationship-follower col-sm-2">
+        <p>フォロワー</p>
+        <p><%= user.followers.count %>人</p>
+      </div>
+      <div class="my-relation-right col-sm-6">
+        <div class="follow-dm-feature">
+          <% if current_user.id != user.id %>
+            <div class="follow-btn text-center">
+                <% if current_user.following?(user) %>
+                  <%= form_with model: @relationship, url: users_relationship_path(@relationship.pluck("id").slice(0)), method: :delete, local: true do |f| %>
+                    <%= f.submit "フォローを解除する", class: "btn btn-outline-danger mb-4" %>
+                  <% end %>
+                <% else %>
+                  <%= form_with model: @relationship, url: users_relationships_path(follow_id: user.id), local: true do |f| %>
+                    <%= f.submit "       フォローする      ", class: "btn btn-outline-info" %>
+                  <% end %>
+              　<% end %>
+            </div>
+            <div class="btn btn-outline-primary text-center mb-0">
+             メッセージを送る
+            </div>
           <% else %>
-            <%= image_tag "Nophoto.jpg", size: "100x100" %>
+            <div class="my-edit text-center pt-3">
+              <%= link_to "     編集する    ", edit_user_path(current_user), class: "btn btn-outline-secondary btn-lg" %>
+            </div>
           <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td>自己紹介</td>
-        <td><%= user.introduction %></td>
-      </tr>
-      <% if current_user.id != user.id %>
-        <tr>
-          <td>
-            <% if current_user.following?(user) %>
-              <%= form_with model: @relationship, url: users_relationship_path(@relationship.pluck("id").slice(0)), method: :delete, local: true do |f| %>
-                <%= f.submit "フォローを解除する" %>
-              <% end %>
-            <% else %>
-              <%= form_with model: @relationship, url: users_relationships_path(follow_id: user.id), local: true do |f| %>
-                <%= f.submit "フォロー" %>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+        </div>
+      </div>
+    </div>
+    <div class="my-introduction mt-4 p-5">
+      <p>自己紹介</p>
+      <p><%= user.introduction %></p>
+    </div>
+  </div>
+  <div class="profile-right"></div>
+</div>
 

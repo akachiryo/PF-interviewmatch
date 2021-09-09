@@ -1,0 +1,10 @@
+<div class="tag-list">
+  <p class="fs-5 ps-3">時間タグ</p>
+  <% @time_tags.each do |time_tag| %>
+    <p class="ps-3"><%= link_to "#{time_tag.span}",  users_rooms_search_path(time_tag_id: time_tag.id) %></p>
+  <% end %>
+  <p class="fs-5 ps-3">業種タグ</p>
+  <% @ocuupation_tags.each do |ocuupation_tag| %>
+    <p class="ps-3"><%= link_to "#{ocuupation_tag.name}",  users_rooms_search_path(ocuupation_tag_id: ocuupation_tag.id) %></p>
+  <% end %>
+</div>

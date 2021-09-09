@@ -1,34 +1,37 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<div class="card card-container">
+  <div class="text-center"><%= image_tag "user.png", size: "100x100", class:"image-radius" %></div>
+  <p id="profile-name" class="profile-name-card"></p>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+    <div class="field">
+      <%= f.text_field :name, class: "form-control", autofocus: true, autocomplete: "name", placeholder: "ニックネーム" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :name, "ニックネーム" %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+    <div class="field mt-2">
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email",placeholder: "Email address" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email,autocomplete: "email" %>
-  </div>
+    <div class="field mt-2">
+      <% if @minimum_password_length %>
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %><br />
+      <%= f.password_field :password, class: "form-control", autocomplete: "current-password", placeholder: "Password" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="field mt-2">
+       <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password", placeholder: "password_confirmation" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <% if devise_mapping.rememberable? %>
+      <div class="field mt-2">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+    <div class="actions pt-2">
+      <p class="d-grid gap-2"><%= f.submit "Sign up", class: "btn btn-info" %></p>
+    </div>
+  <% end %>
+</div>

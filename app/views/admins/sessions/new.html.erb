@@ -1,26 +1,24 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
+<div class="card card-container">
+  <div class="text-center"><%= image_tag "admin.png", size: "100x100", class:"image-radius" %></div>
+  <p id="profile-name" class="profile-name-card"></p>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email",placeholder: "Email address" %>
+    </div>
+
+    <div class="field mt-2">
+      <%= f.password_field :password, class: "form-control", autocomplete: "current-password", placeholder: "Password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field mt-2">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions pt-2">
+      <p class="d-grid gap-2"><%= f.submit "Log in", class: "btn btn-info" %></p>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "admins/shared/links" %>
+</div>
