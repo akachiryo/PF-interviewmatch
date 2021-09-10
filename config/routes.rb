@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :schedules
     resources :dmmessages, only: [:create]
     resources :dmrooms, only: [:create,:show]
+    resources :notifications, only: [:index]
   end
 
   namespace :admins do

@@ -1,0 +1,11 @@
+<% if @notifications.where(visited_id: current_user.id).nil? %>
+  <p>通知はありません</p>
+<% else %>
+  <% @notifications.each do |n| %>
+    <div class="notification border-bottom d-flex align-items-center justify-content-between">
+      <span><%= n.visiter_id %>さんがあなたにDMを送りました</span>
+      <span class="pt-5"><%= time_ago_in_words(n.created_at).upcase %></span>
+    </div>
+  <% end %>
+  <%= paginate @notifications %>
+<% end %>
