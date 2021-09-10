@@ -10,7 +10,7 @@ def create
     user_id = Entry.where(dmroom_id: dmmessage.dmroom_id).where.not(user_id: current_user).pluck("user_id").slice(0)
     user = User.find(user_id)
     Dmmessage.create_notification_dmmessage(current_user, user, dmmessage)
-    redirect_to users_dmroom_path(dmmessage.dmroom_id)
+     redirect_to users_dmroom_path(dmmessage.dmroom_id)
 
 end
 
@@ -20,3 +20,5 @@ def dmmessage_params
 end
 
 end
+
+
