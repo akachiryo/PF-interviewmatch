@@ -5,12 +5,22 @@ class Users::RelationshipsController < ApplicationController
     relationship.user_id = current_user.id
     relationship.follow_id = params[:follow_id]
 
-    p '----'
-    p request.referer&.include?('finish')
-    p '----'
     if relationship.save
       flash[:success] = 'ユーザーをフォローしました'
-      redirect_to users_rooms_finish_path
+      
+      
+      
+      
+      user_id = Entry.where(dmroom_id: dmmessage.dmroom_id).where.not(user_id: current_user).pluck("user_id").slice(0)
+      user = User.find(user_id)
+      Dmmessage.create_notification_dmmessage(current_user, user, dmmessage)
+      
+      
+      if request.referer&.include?('finish')
+        redirect_to users_rooms_finish_path
+      else
+        redirect_to user_path(relationship.follow_id)
+      end
     else
       flash.now[:alert] = 'ユーザーのフォローに失敗しました'
       redirect_to users_rooms_finish
@@ -21,7 +31,11 @@ class Users::RelationshipsController < ApplicationController
 
     if relationship.destroy
       flash[:success] = 'ユーザーのフォローを解除しました'
-      redirect_to users_rooms_finish_path
+      if request.referer&.include?('finish')
+        redirect_to users_rooms_finish_path
+      else
+        redirect_to user_path(relationship.follow_id)
+      end
     else
       flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
       redirect_to @user

@@ -22,7 +22,6 @@ class Users::DmroomsController < ApplicationController
   end
 
   def show
-
     @dmroom = Dmroom.find(params[:id])
     @dmmessages = @dmroom.dmmessages
     @dmmessage = Dmmessage.new
