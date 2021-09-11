@@ -7,15 +7,8 @@ class Users::RelationshipsController < ApplicationController
 
     if relationship.save
       flash[:success] = 'ユーザーをフォローしました'
-      
-      
-      
-      
-      user_id = Entry.where(dmroom_id: dmmessage.dmroom_id).where.not(user_id: current_user).pluck("user_id").slice(0)
-      user = User.find(user_id)
-      Dmmessage.create_notification_dmmessage(current_user, user, dmmessage)
-      
-      
+      user = User.find(relationship.follow_id)
+      Relationship.create_notification_follow(current_user, user)
       if request.referer&.include?('finish')
         redirect_to users_rooms_finish_path
       else

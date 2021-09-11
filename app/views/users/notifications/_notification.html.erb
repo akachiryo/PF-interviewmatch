@@ -1,7 +1,15 @@
- <% notifications.each do |n| %>
+<% notifications.each do |notification| %>
+  <% if notification.action == "dmmessage" %>
     <div class="notification border-bottom d-flex align-items-center justify-content-between">
-      <span><%= User.find(n.visiter_id).name %>さんがあなたにDMを送りました</span>
-      <span class="pt-5"><%= time_ago_in_words(n.created_at).upcase %></span>
+      <span><%= User.find(notification.visiter_id).name %>さんがあなたにDMを送りました</span>
+      <span class="pt-5"><%= time_ago_in_words(notification.created_at).upcase %></span>
     </div>
+  <% elsif notification.action == "follow" %>
+    <div class="notification border-bottom d-flex align-items-center justify-content-between">
+      <span><%= User.find(notification.visiter_id).name %>さんがあなたをフォローしました</span>
+      <span class="pt-5"><%= time_ago_in_words(notification.created_at).upcase %></span>
+    </div>
+  <% elsif notification.action == "" %>
   <% end %>
-  <%= paginate notifications %>
+<% end %>
+<%= paginate notifications %>
