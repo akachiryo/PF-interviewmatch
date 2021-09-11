@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_125052) do
     t.string "content", default: "記述がありません"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active"
+    t.boolean "active", default: true, null: false
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_125052) do
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active"
+    t.boolean "active", default: true, null: false
   end
 
   create_table "users", force: :cascade do |t|
