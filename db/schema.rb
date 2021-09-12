@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_154515) do
+ActiveRecord::Schema.define(version: 2021_09_11_125052) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,18 @@ ActiveRecord::Schema.define(version: 2021_09_09_154515) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "dmmessage_id"
+    t.integer "user_room_id"
+    t.integer "room_chat_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ocuupation_tags", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -99,6 +111,7 @@ ActiveRecord::Schema.define(version: 2021_09_09_154515) do
     t.string "content", default: "記述がありません"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true, null: false
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -121,6 +134,7 @@ ActiveRecord::Schema.define(version: 2021_09_09_154515) do
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true, null: false
   end
 
   create_table "users", force: :cascade do |t|

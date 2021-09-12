@@ -3,7 +3,7 @@ class Users::RoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @rooms = Room.page(params[:page]).per(10)
+    @rooms = Room.page(params[:page]).per(10).order(created_at: :desc)
     @time_tags = TimeTag.all
     @ocuupation_tags = OcuupationTag.all
   end
@@ -35,14 +35,19 @@ class Users::RoomsController < ApplicationController
   end
 
   def finish
-    @room_id = UserRoom.where(user_id: current_user.id).pluck("room_id")
-    @user_id = UserRoom.where(room_id: @room_id).where.not(user_id: current_user.id).pluck("user_id")
-    @user = User.find(@user_id.slice(0))
-    @room = Room.find(@room_id.slice(0))
+    @room_id = UserRoom.where(user_id: current_user.id, active: false).order(updated_at: :desc).limit(1).pluck("room_id")
+    @user_id = UserRoom.where(room_id: @room_id).where.not(user_id: current_user).pluck("user_id")
+    @user_a = User.find(@user_id)
+    @room_a = Room.find(@room_id)
+    @user = User.find(@user_a.pluck("id").slice(0))
+    @room = Room.find(@room_a.pluck("id").slice(0))
     if current_user.following?(@user)
       @relationship = Relationship.where(user_id: current_user.id, follow_id: @user.id)
     else
       @relationship = Relationship.new
+    end
+    if UserRoom.where(room_id: @room.id, active: false).count == 2
+      @room.update(active: false)
     end
   end
 
