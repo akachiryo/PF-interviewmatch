@@ -1,9 +1,17 @@
-<% if UserRoom.where.not(room_id: @room.id).pluck("user_id").include?(current_user.id) %>
-  <%= render "users/rooms/practice_continue" %>
-<% elsif UserRoom.where(room_id: @room.id).count == 2 && UserRoom.where(room_id: @room.id).pluck("user_id").include?(current_user.id) %>
-  <%= render "users/rooms/chat_room", room: @room, room_chat: @room_chat, room_chats: @room_chats %>
-<% elsif  UserRoom.where(room_id: @room.id).count <= 1 %>
+<% if UserRoom.where(room_id: @room.id, active: true).count == 2 %>
+  <%= render "users/rooms/chat_room", room: @room, room_chats: @room_chats, room_chat: @room_chat %>
+<% elsif UserRoom.where(room_id: @room.id, active: true).count == 1 && UserRoom.where(user_id: current_user.id, room_id: @room.id, active: false).count == 1 %>
+  <h2>相手の方の評価が、まだ終わっていません。少々お待ちください。</h2>
+<% elsif UserRoom.where(user_id: current_user.id, room_id: @room.id, active: true).count == 1 && UserRoom.where(room_id: @room.id, active: false).count == 1 %>
+  <h2>相手の方があなたを評価しました。相手を評価しましょう。</h2>
+  <%= form_with url: users_user_room_path, method: :patch, local: true do |f| %>
+    <%= f.hidden_field :room_id, :value => @room.id %>
+    <%= f.submit "相手を評価する" %>
+  <% end %>
+<% elsif UserRoom.where(room_id: @room.id, active: true).count == 1 %>
   <%= render "users/rooms/detail", room: @room %>
+<% elsif @room.active == false %>
+  <h1>終了したRoomです</h1>
 <% else %>
-  <%= render "users/rooms/no_vacancy", room: @room %>
+  <h1>満室です</h1>
 <% end %>

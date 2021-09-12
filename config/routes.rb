@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get "rooms/search" => "rooms#search"
     get "rooms/finish" => "rooms#finish"
     resources :rooms
-    resources :user_rooms, only: [:create]
+    resources :user_rooms, only: [:create, :update]
     resources :room_chats, only: [:create, :destroy]
     resources :relationships, only: [:create, :destroy]
     resources :schedules
