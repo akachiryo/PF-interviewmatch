@@ -1,0 +1,5 @@
+<% if @notifications.where(visited_id: current_user.id).nil? %>
+  <p>通知はありません</p>
+<% else %>
+ <%= render "/users/notifications/notification", notifications: @notifications %>
+<% end %>

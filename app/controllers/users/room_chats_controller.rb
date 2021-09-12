@@ -2,9 +2,7 @@ class Users::RoomChatsController < ApplicationController
 
   def create
     room_chat = RoomChat.new(room_chat_params)
-
     room_id = params[:room_id]
-
     room_chat.user_id = current_user.id
     room_chat.room_id = room_id
     if room_chat.save
