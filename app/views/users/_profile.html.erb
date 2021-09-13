@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="profile-main">
-  <div class="profile-left pt-5">
+  <div class="profile-left pt-5 pb-5">
     <div class="my-relationship p-3">
       <div class="col-sm-1"></div>
       <div class="my-relationship-follow col-sm-2">
@@ -41,10 +41,10 @@
                   <% end %>
               　<% end %>
             </div>
-            <div class="btn btn-outline-primary text-center mb-0">
+            <div class="text-center">
               <%= form_with model: @dmroom, url: users_dmrooms_path, local: true do |f| %>
                 <%= f.hidden_field :user_id, value: user.id %>
-                <%= f.submit "チャットを始める" %>
+                <%= f.submit "  チャットを始める  ", class: "btn btn-outline-primary text-center mb-0" %>
               <% end %>
             </div>
           <% else %>
@@ -63,5 +63,3 @@
   </div>
   <div class="profile-right"></div>
 </div>
-
-<%= link_to "通知一覧", users_notifications_path, local: true %>

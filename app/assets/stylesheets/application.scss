@@ -34,6 +34,17 @@ header {
   padding-top: 0rem;
 }
 
+.footer {
+width: 100%;
+/* Set the fixed height of the footer here */
+text-align: center;
+}
+
+.text-muted {
+margin: 20px 0;
+text-decoration: none;
+}
+
 
 @media screen and (max-width:639px) {
 /*スマホ用のcssを記述*/

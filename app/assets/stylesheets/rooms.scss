@@ -21,3 +21,21 @@
   background-color: #EEEEEE;
 }
 
+.room-new-back {
+  height: 550px;
+  padding-top: 5%;
+  background-color: #f5f5f5;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.room-new {
+  background-color: white;
+  width: 50%;
+}
+
+.form-control {
+  width: 50%;
+}

@@ -8,9 +8,6 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <% if unchecked_notifications.any? %>
-                    <i class="fa fa-circle" style="color: #99FFCC;"></i>
-                <% end %>
                 <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
               </li>
               <li class="nav-item">
@@ -21,6 +18,12 @@
               </li>
               <li class="nav-item">
                 <%= link_to "ルーム作成", new_users_room_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <% if unchecked_notifications.any? %>
+                    <i class="fa fa-circle" style="color: #99FFCC;"></i>
+                <% end %>
+                <%= link_to "通知一覧", users_notifications_path, class: "nav-link" %>
               </li>
             </ul>
           </div>
