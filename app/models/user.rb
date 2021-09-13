@@ -23,5 +23,9 @@ class User < ApplicationRecord
      self.followings.include?(other_user)
    end
 
+   def active_for_authentication?
+    super && (is_deleted == false)
+   end
+
 
 end
