@@ -1,5 +1,5 @@
 <h2>会員情報編集</h2>
-<%= form_with model: @user, local: true do |f| %>
+<%= form_with model: @user, url: admins_user_path(@user), method: :patch, local: true do |f| %>
   <div class="form-inline">
     <%= f.label :name, "ニックネーム", class:"col-1 mt-5" %>
     <%= f.text_field :name, class:"offset-1 col-3", autofocus: true %>
@@ -20,6 +20,11 @@
     <%= f.text_area :introduction, class:"offset-1 col-3" %>
   </div>
 
+  <div class="row lh-lg">
+    <p class="col-2">会員ステータス</p>
+    <p class="col-1"><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効" %></p>
+    <p class="col-1"><%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会" %></p>
+  </div>
+
   <%= f.submit "編集内容を保存", class: "btn btn-success offset-2 col-2 mt-5" %>
 <% end %>
-<%= link_to "退会する",  unsubscribe_path, class: "btn btn-danger col-2 offset-2 mt-3 mb-3" %>
