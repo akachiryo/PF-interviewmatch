@@ -44,6 +44,7 @@ gem 'image_processing', '~> 1.2'
 gem 'kaminari'
 gem "bullet"
 gem 'simple_calendar', '~> 2.0'
+gem 'dotenv-rails'
 
 
 group :development, :test do
