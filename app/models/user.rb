@@ -19,6 +19,10 @@ class User < ApplicationRecord
    has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
    has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :password, length: { is: 6 }
+
    def following?(other_user)
      self.followings.include?(other_user)
    end

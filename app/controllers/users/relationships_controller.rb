@@ -11,6 +11,8 @@ class Users::RelationshipsController < ApplicationController
       Relationship.create_notification_follow(current_user, user)
       if request.referer&.include?('finish')
         redirect_to users_rooms_finish_path
+      elsif request.referer&.include?('room')
+        redirect_to request.referer
       else
         redirect_to user_path(relationship.follow_id)
       end
@@ -26,6 +28,8 @@ class Users::RelationshipsController < ApplicationController
       flash[:success] = 'ユーザーのフォローを解除しました'
       if request.referer&.include?('finish')
         redirect_to users_rooms_finish_path
+      elsif request.referer&.include?('room')
+        redirect_to request.referer
       else
         redirect_to user_path(relationship.follow_id)
       end

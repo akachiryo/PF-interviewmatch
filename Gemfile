@@ -45,11 +45,14 @@ gem 'kaminari'
 gem "bullet"
 gem 'simple_calendar', '~> 2.0'
 gem 'dotenv-rails'
+gem 'rails-i18n'
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
+  gem 'rspec-rails', '~> 5.0.0'
+
 end
 
 group :development do

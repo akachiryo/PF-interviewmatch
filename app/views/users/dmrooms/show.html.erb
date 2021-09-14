@@ -1,25 +1,59 @@
-<h1>DM</h1>
+<div class="dmmessage-main row">
 
-<h4>参加者</h4>
-<% @entries.each do |e| %>
-  <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
-<% end %>
+   <div class="dmmessage-left col-sm-2 text-center me-0">
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image.variant(resize:"150x150"), class:"image-radius" %><br>
+      <% else %>
+        <%= image_tag "noimage.png", size: "150x150", class:"image-radius" %><br>
+      <% end %>
+      <p><%= link_to "#{@user.name}", user_path(@user), class: "text-decoration-none" %></p>
 
-<hr>
-<% if @dmmessages.present? %>
-  <% @dmmessages.each do |m| %>
-    <strong><%= m.content %></strong>
-    <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.email %>さん</a></strong></small>
-    <hr>
-  <% end %>
-<% else %>
-  <h3 class="text-center">メッセージはまだありません</h3>
-<% end %>
+      <% if current_user.following?(@user) %>
+        <%= form_with url: users_relationship_path(Relationship.where(user_id: current_user, follow_id: @user.id).pluck("id").slice(0)), method: :delete, local: true do |f| %>
+          <%= f.submit "フォローを解除する", class: "btn btn-outline-danger" %>
+        <% end %>
+      <% else %>
+        <%= form_with model: @relationship, url: users_relationships_path(follow_id: @user.id), local: true do |f| %>
+          <%= f.submit "       フォローする      ", class: "btn btn-outline-info" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="dmmessage-right col-sm-6">
 
-<%= form_with model: @dmmessage, url: users_dmmessages_path, local: true do |f| %>
-  <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
-  <%= f.hidden_field :dmroom_id, :value => @dmroom.id %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <br>
-  <%= f.submit "投稿する" %>
-<% end %>
+    <h2 style="text-align:center"><%="#{@user.name}さん"%></h2>
+    <div id="chats">
+      <% @dmmessages.each do |chat|%>
+        <%if chat.user_id==current_user.id%>
+          <div class="mycomment">
+            <p><%= chat.content %></p>
+          </div>
+        <%else%>
+          <div class="fukidasi">
+            <div class="faceicon">
+              <% if chat.user.image.attached? %>
+                <%= image_tag chat.user.image.variant(resize:"100x100"), class:"image-radius" %>
+              <% else %>
+                <%= image_tag "noimage.png", size: "100x100", class:"image-radius" %>
+              <% end %>
+            </div>
+            <div class="chatting">
+              <div class="says">
+                <p><%=chat.content%></p>
+              </div>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+    <%= form_with model: @dmmessage, url: users_dmmessages_path, id: "send-form", local: true do |f| %>
+      <%= f.text_field :content, id: "sentence", :placeholder => "メッセージを入力して下さい" , :size => 37 %>
+      <%= f.submit "送信", id: "send" %>
+      <%= f.hidden_field :dmroom_id, :value => @dmroom.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <br>
+      <%= render 'layouts/error_messages', model: f.object %>
+
+    <% end %>
+  </div>
+    </div>
+

@@ -10,8 +10,11 @@ class Users::RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    user_id = @room.user_id
+    @user = User.find(user_id)
     @room_chat = RoomChat.new
     @room_chats = RoomChat.where(room_id: @room.id).reverse
+    @relationship = current_user.relationships.find_by(follow_id: @user.id)
   end
 
   def new
