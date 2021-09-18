@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true
-  validates :password, length: { is: 6 }
+
 
    def following?(other_user)
      self.followings.include?(other_user)

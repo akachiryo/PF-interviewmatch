@@ -5,6 +5,7 @@ class InquiryController < ApplicationController
     render :action => 'index'
   end
 
+
   def confirm
     # 入力値のチェック
     @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))

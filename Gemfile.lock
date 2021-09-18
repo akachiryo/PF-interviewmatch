@@ -99,6 +99,11 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.4)
     font-awesome-sass (5.11.2)
       sassc (>= 1.11)
@@ -292,6 +297,7 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  factory_bot_rails
   font-awesome-sass (~> 5.11.2)
   image_processing (~> 1.2)
   jbuilder (~> 2.5)

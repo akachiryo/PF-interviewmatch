@@ -18,9 +18,10 @@ class Users::RelationshipsController < ApplicationController
       end
     else
       flash.now[:alert] = 'ユーザーのフォローに失敗しました'
-      redirect_to users_rooms_finish
+      redirect_to users_rooms_finish_path
     end
   end
+
   def destroy
    relationship = Relationship.find(params[:id])
 
@@ -35,7 +36,7 @@ class Users::RelationshipsController < ApplicationController
       end
     else
       flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
-      redirect_to @user
+      redirect_to ser_path(relationship.follow_id)
     end
   end
 

@@ -21,5 +21,4 @@ class Dmmessage < ApplicationRecord
     end
   end
 
-
 end
