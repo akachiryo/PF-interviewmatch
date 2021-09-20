@@ -2,6 +2,7 @@
   <div class="text-center"><%= image_tag "noimage.png", size: "100x100", class:"image-radius" %></div>
     <p id="profile-name" class="profile-name-card"></p>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name),class: "form-signin" ) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
       <div class="field">
         <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email",placeholder: "Email address" %>
       </div>

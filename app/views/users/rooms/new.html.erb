@@ -1,21 +1,24 @@
- <%= form_with model: @room,url: users_rooms_path, local: true do |f| %>
-    <div class="form-inline">
-      <%= f.label :title, "ルーム名" %>
-      <%= f.text_field :title %>
-    </div>
-     <div class="row mt-3">
-       <div class="col-3"></div>
-       <div class="col-2 fs-5"><%= f.label:time_tags, "時間指定" %></div>
-       <div class="col-5"><%= f.collection_select(:time_tag_id, @time_tags, :id, :span, :include_blank => "--選択してください--") %></div>
-     </div>
-      <div class="row mt-3">
-       <div class="col-3"></div>
-       <div class="col-2 fs-5"><%= f.label:ocuupation_tags, "職種" %></div>
-       <div class="col-5"><%= f.collection_select(:ocuupation_tag_id, @ocuupation_tags, :id, :name, :include_blank => "--選択してください--") %></div>
-     </div>
-  　<div class="form-inline">
-      <%= f.label :content, "ルーム説明"%>
-      <%= f.text_field :content %>
-    </div>
-    <%= f.submit "ルーム作成", class: "btn btn-success" %>
-  <% end %>
+ <div class="room-new-back">
+   <div class="room-new card">
+     <%= form_with model: @room,url: users_rooms_path, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+       <div class="field">
+         <%= f.label :title, "ルーム名" %><br>
+         <%= f.text_field :title, class: "form-control", size: 10, placeholder: "IT企業！未経験" %>
+       </div>
+       <div class="row mt-3 field">
+         <div class="col-2 fs-5"><%= f.label:time_tags, "時間指定" %></div>
+         <div class="col-5"><%= f.collection_select(:time_tag_id, @time_tags, :id, :span, :include_blank => "--選択してください--") %></div>
+       </div>
+        <div class="row mt-3 field">
+         <div class="col-2 fs-5"><%= f.label:ocuupation_tags, "職種" %></div>
+         <div class="col-5"><%= f.collection_select(:ocuupation_tag_id, @ocuupation_tags, :id, :name, :include_blank => "--選択してください--") %></div>
+       </div>
+     　<div class="field">
+         <%= f.label :content, "ルーム説明"%><br>
+         <%= f.text_area :content, class: "form-control" %>
+       </div>
+      <%= f.submit "ルーム作成", class: "btn btn-success mt-3" %>
+    <% end %>
+   </div>
+ </div>

@@ -1,9 +1,39 @@
-<p><%= room.title %></p>
-<p><%= room.content %></p>
-<p><%= room.time_tag.span %></p>
-<p><%= room.ocuupation_tag.name %></p>
-<% if room.user_id == current_user.id %>
-  <%= link_to "ルームを削除する", users_room_path(room), method: :delete, local: true %>
-<% else %>
-  <%= link_to "ルームに入室する", users_user_rooms_path(user_id: current_user.id,room_id: room.id), method: :post, local: true %>
-<% end %>
+<div class="room-detail row">
+  <div class="col-sm-1"></div>
+  <div class="room-detail-left col-sm-2 text-center">
+    <% if @user.image.attached? %>
+      <%= image_tag @user.image.variant(resize:"150x150"), class:"image-radius" %><br>
+    <% else %>
+      <%= image_tag "noimage.png", size: "150x150", class:"image-radius" %><br>
+    <% end %>
+    <p><%= link_to "#{@user.name}", user_path(@user), class: "text-decoration-none" %></p>
+
+
+    <% if current_user.following?(@user) %>
+      <%= form_with url: users_relationship_path(Relationship.where(user_id: current_user, follow_id: @user.id).pluck("id").slice(0)), method: :delete, local: true do |f| %>
+        <%= f.submit "フォローを解除する", class: "btn btn-outline-danger" %>
+      <% end %>
+    <% else %>
+      <%= form_with model: @relationship, url: users_relationships_path(follow_id: @user.id), local: true do |f| %>
+        <%= f.submit "       フォローする      ", class: "btn btn-outline-info" %>
+      <% end %>
+    <% end %>
+    <%= form_with url: users_dmrooms_path, local: true do |f| %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+      <%= f.submit "  チャットを始める  ", class: "btn btn-outline-primary text-center mb-0 mt-3" %>
+    <% end %>
+  </div>
+  <div class="room-detail-right col-sm-6">
+    <h2 class="ms-5"><%= room.title %></h2>
+    <p class="ms-5 mt-3"><%= room.time_tag.span %></p>
+    <p class="ms-5"><%= room.ocuupation_tag.name %></p>
+    <p class="room-content mb-5 ms-5"><%= room.content %></p>
+    <% if room.user_id == current_user.id %>
+      <%= link_to "ルームを削除する", users_room_path(room), class: "btn btn-outline-danger ms-5", method: :delete, local: true %>
+    <% else %>
+      <%= link_to "ルームに入室する", users_user_rooms_path(user_id: current_user.id,room_id: room.id), class: "btn btn-outline-info ms-5", method: :post, local: true %>
+    <% end %>
+
+  </div>
+  <div class="col-sm-1"></div>
+</div>
