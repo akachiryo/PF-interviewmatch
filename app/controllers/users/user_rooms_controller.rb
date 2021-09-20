@@ -1,6 +1,8 @@
 class Users::UserRoomsController < ApplicationController
   def create
-    if UserRoom.where(user_id: current_user.id, active: true).blank?
+    room = Room.find(params[:room_id])
+    # UserRoom.where(user_id: current_user.id, active: true).blank? &&
+    if UserRoom.where(room_id: room.id, user_id: current_user.id).blank?
       user_room = UserRoom.new
       user_room.user_id = params[:user_id]
       user_room.room_id = params[:room_id]

@@ -12,8 +12,12 @@ class Users::RoomsController < ApplicationController
     @room = Room.find(params[:id])
     user_id = @room.user_id
     @user = User.find(user_id)
+    @user_partoner_id = UserRoom.where(room_id: @room.id).where.not(user_id: current_user.id).pluck("user_id").slice(0)
+    if @user_partoner_id.present?
+      @user_partoner = User.find(@user_partoner_id)
+    end
     @room_chat = RoomChat.new
-    @room_chats = RoomChat.where(room_id: @room.id).reverse
+    @room_chats = RoomChat.where(room_id: @room.id).limit(14).order('id DESC').reverse
     @relationship = current_user.relationships.find_by(follow_id: @user.id)
   end
 
