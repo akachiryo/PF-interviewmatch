@@ -11,14 +11,17 @@ class Users::RelationshipsController < ApplicationController
       Relationship.create_notification_follow(current_user, user)
       if request.referer&.include?('finish')
         redirect_to users_rooms_finish_path
+      elsif request.referer&.include?('room')
+        redirect_to request.referer
       else
         redirect_to user_path(relationship.follow_id)
       end
     else
       flash.now[:alert] = 'ユーザーのフォローに失敗しました'
-      redirect_to users_rooms_finish
+      redirect_to users_rooms_finish_path
     end
   end
+
   def destroy
    relationship = Relationship.find(params[:id])
 
@@ -26,12 +29,14 @@ class Users::RelationshipsController < ApplicationController
       flash[:success] = 'ユーザーのフォローを解除しました'
       if request.referer&.include?('finish')
         redirect_to users_rooms_finish_path
+      elsif request.referer&.include?('room')
+        redirect_to request.referer
       else
         redirect_to user_path(relationship.follow_id)
       end
     else
       flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
-      redirect_to @user
+      redirect_to ser_path(relationship.follow_id)
     end
   end
 

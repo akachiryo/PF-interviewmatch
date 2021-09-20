@@ -2,6 +2,19 @@ class Users::DmroomsController < ApplicationController
 
   before_action :authenticate_user!
 
+  def show
+    @dmroom = Dmroom.find(params[:id])
+    @dmmessages = @dmroom.dmmessages.limit(14).order('id DESC').reverse
+    @dmmessage = Dmmessage.new
+    @entries = @dmroom.entries
+    @entries.each do |entry|
+      User.find(entry.user_id)
+      if User.find(entry.user_id)  != current_user
+        @user = User.find(entry.user_id)
+      end
+    end
+  end
+
   def create
     @user_id = params[:user_id]
     dmroom_ids = Entry.where(user_id: current_user.id).pluck("dmroom_id")
@@ -21,11 +34,6 @@ class Users::DmroomsController < ApplicationController
     end
   end
 
-  def show
-    @dmroom = Dmroom.find(params[:id])
-    @dmmessages = @dmroom.dmmessages
-    @dmmessage = Dmmessage.new
-    @entries = @dmroom.entries
-  end
+
 
 end
