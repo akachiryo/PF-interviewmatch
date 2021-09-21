@@ -13,10 +13,14 @@
         </div>
       <% elsif notification.action == "user_room" %>
         <div class="notification-li border-bottom d-flex align-items-center justify-content-between">
-          <span><%= User.find(notification.visiter_id).name %>さんがあなたの作成したROOMに参加しました</span>
+          <span><%= User.find(notification.visiter_id).name %>さんがあなたの作成した部屋に参加しました</span>
           <span class="pt-5"><%= time_ago_in_words(notification.created_at).upcase %></span>
         </div>
-      <% elsif notification.action == "" %>
+      <% elsif notification.action == "room_chat" %>
+        <div class="notification-li border-bottom d-flex align-items-center justify-content-between">
+          <span><%= User.find(notification.visiter_id).name %>さんが部屋にチャットを送りました</span>
+          <span class="pt-5"><%= time_ago_in_words(notification.created_at).upcase %></span>
+        </div>
       <% end %>
     <% end %>
     <%= paginate notifications %>
