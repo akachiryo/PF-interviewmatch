@@ -51,6 +51,9 @@ text-decoration: none;
 .main-view-right {
    display:none;
  }
+ .main-view-left {
+   text-align: center;
+ }
  .pc-display {
   display: none;
  }
@@ -63,6 +66,10 @@ text-decoration: none;
 }
 .pc-display {
   display: none;
+ }
+
+  .main-view-left {
+   text-align: center;
  }
 }
 

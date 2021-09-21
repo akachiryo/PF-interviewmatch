@@ -4,4 +4,8 @@ class HomesController < ApplicationController
     @time_tags = TimeTag.all
     @ocuupation_tags = OcuupationTag.all
   end
+
+  def about
+
+  end
 end

@@ -1,25 +1,25 @@
 <div class="roomchat-main row">
   <div class="roomchat-left col-sm-2 text-center me-0">
-    <% if @user.image.attached? %>
-      <%= image_tag @user.image.variant(resize:"150x150"), class:"image-radius" %><br>
+    <% if @user_partoner.image.attached? %>
+      <%= image_tag @user_partoner.image.variant(resize:"150x150"), class:"image-radius" %><br>
     <% else %>
       <%= image_tag "noimage.png", size: "150x150", class:"image-radius" %><br>
     <% end %>
-    <p><%= link_to "#{@user.name}", user_path(@user), class: "text-decoration-none" %></p>
+    <p><%= link_to "#{@user_partoner.name}", user_path(@user_partoner), class: "text-decoration-none" %></p>
 
-    <% if current_user.following?(@user) %>
-      <%= form_with url: users_relationship_path(Relationship.where(user_id: current_user, follow_id: @user.id).pluck("id").slice(0)), method: :delete, local: true do |f| %>
+    <% if current_user.following?(@user_partoner) %>
+      <%= form_with url: users_relationship_path(Relationship.where(user_id: current_user, follow_id: @user_partoner.id).pluck("id").slice(0)), method: :delete, local: true do |f| %>
         <%= f.submit "フォローを解除する", class: "btn btn-outline-danger" %>
       <% end %>
     <% else %>
-      <%= form_with model: @relationship, url: users_relationships_path(follow_id: @user.id), local: true do |f| %>
+      <%= form_with model: @relationship, url: users_relationships_path(follow_id: @user_partoner.id), local: true do |f| %>
         <%= f.submit "       フォローする      ", class: "btn btn-outline-info" %>
       <% end %>
     <% end %>
   </div>
 
-  <div class="roomchat-right col-sm-6">
-    <h2 style="text-align:center"><%="#{@user.name}さん"%></h2>
+  <div class="roomchat-right text-end col-sm-8">
+    <p class="fs-2 text-center"><%="#{@user_partoner.name}さん"%></p>
     <div id="chats">
       <% room_chats.each do |room_chat| %>
         <%if room_chat.user_id==current_user.id%>
@@ -46,13 +46,13 @@
     </div>
     <%= form_with model: room_chat, url: users_room_chats_path(room_id: room.id), id: "send-form", local: true do |f| %>
       <%= f.text_field :message, id: "sentence", :placeholder => "メッセージを入力して下さい" , :size => 37 %>
-      <%= f.submit "送信", id: "send" %>
-      <br>
       <%= render 'layouts/error_messages', model: f.object %>
+      <%= f.submit "送信", id: "send" %>
     <% end %>
+      <br>
+      <%= form_with url: users_user_room_path, method: :patch, local: true do |f| %>
+        <%= f.hidden_field :room_id, :value => room.id %>
+        <%= f.submit "面接練習を終了する", class: "roomchat-btn btn btn-outline-info" %>
+      <% end %>
   </div>
-  <%= form_with url: users_user_room_path, method: :patch, local: true do |f| %>
-  <%= f.hidden_field :room_id, :value => room.id %>
-  <%= f.submit "面接練習を終了し、相手を評価する" %>
-<% end %>
 </div>
