@@ -4,8 +4,9 @@ class Users::RoomsController < ApplicationController
 
   def index
     @rooms = Room.page(params[:page]).per(10).order(created_at: :desc)
-    @time_tags = TimeTag.all
-    @ocuupation_tags = OcuupationTag.all
+    @tags = Tag.joins(:room_tags).group(:tag_id).order('count(tag_id) desc').limit(8)
+
+
   end
 
   def show
@@ -23,8 +24,6 @@ class Users::RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    @time_tags = TimeTag.all
-    @ocuupation_tags = OcuupationTag.all
   end
 
   def search
@@ -61,7 +60,9 @@ class Users::RoomsController < ApplicationController
   def create
     room = Room.new(room_params)
     room.user_id = current_user.id
+    tag_list = params[:room][:name].gsub(/　/," ").strip.split("#")
     if room.save
+      room.save_tag(tag_list)
       user_room = UserRoom.new
       user_room.user_id = room.user_id
       user_room.room_id = room.id
@@ -85,7 +86,7 @@ class Users::RoomsController < ApplicationController
   private
 
     def room_params
-      params.require(:room).permit(:user_id, :time_tag_id, :ocuupation_tag_id, :title, :content)
+      params.require(:room).permit(:user_id, :title, :content)
     end
 
 end
