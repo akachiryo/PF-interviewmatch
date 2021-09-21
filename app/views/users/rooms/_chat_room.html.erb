@@ -52,7 +52,7 @@
       <br>
       <%= form_with url: users_user_room_path, method: :patch, local: true do |f| %>
         <%= f.hidden_field :room_id, :value => room.id %>
-        <%= f.submit "面接練習を終了し、相手を評価する", class: "roomchat-btn btn btn-outline-info" %>
+        <%= f.submit "面接練習を終了する", class: "roomchat-btn btn btn-outline-info" %>
       <% end %>
   </div>
 </div>

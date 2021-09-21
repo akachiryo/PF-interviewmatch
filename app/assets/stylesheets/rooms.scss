@@ -205,3 +205,27 @@
 .roomchat-btn {
   margin-left:50px;
 }
+
+.finish_main {
+  height: 850px;
+  padding-top: 5%;
+  background-color: #f5f5f5;
+  width: 98.5vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.finish-content {
+  width: 80%;
+  background-color: white;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}

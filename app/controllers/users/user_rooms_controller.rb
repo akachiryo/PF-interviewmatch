@@ -21,8 +21,12 @@ class Users::UserRoomsController < ApplicationController
 
   def update
     room_id = params[:room_id]
+    @room = Room.find(room_id)
     user_room = UserRoom.where(room_id: room_id, user_id: current_user.id, active: true)
     user_room.update(active: false)
-    redirect_to users_rooms_finish_path
+    if UserRoom.where(room_id: @room.id, active: false).count == 2
+      @room.update(active: false)
+    end
+    redirect_to users_rooms_path
   end
 end
