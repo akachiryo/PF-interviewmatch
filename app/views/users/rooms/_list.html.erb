@@ -10,10 +10,13 @@
     <div class="room_list-right col-5 text-center mt-2">
       <%= link_to "#{room.user.name}",  user_path(room.user) %>
       <div>
-        <span class="tag-color"><%= room.time_tag.span %></span>
-        <span class="tag-color"><%= room.ocuupation_tag.name %></span>
         <div><%= link_to "#{room.title}", users_room_path(room), class: "fs-5" %></div>
       </div>
+      <p>
+        <% room.tags.each do |tag| %>
+        <%= link_to "##{tag.name}",  root_path, class: "tag_list" %>
+         <% end %>
+      </p>
     </div>
   </div>
 <% end %>

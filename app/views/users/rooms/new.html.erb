@@ -6,14 +6,14 @@
          <%= f.label :title, "ルーム名" %><br>
          <%= f.text_field :title, class: "form-control", size: 10, placeholder: "IT企業！未経験" %>
        </div>
-       <div class="row mt-3 field">
-         <div class="col-2 fs-5"><%= f.label:time_tags, "時間指定" %></div>
-         <div class="col-5"><%= f.collection_select(:time_tag_id, @time_tags, :id, :span, :include_blank => "--選択してください--") %></div>
+
+       <div class="field">
+         <%= f.label :name, "タグ" %><br>
+         <%= f.text_field :name, class: "form-control", size: 10 %>
+        <p>#を入力することで複数のタグを付けることができます。</p>
+        <p>例：#IT #5分だけ #ZOOM希望</p>
        </div>
-        <div class="row mt-3 field">
-         <div class="col-2 fs-5"><%= f.label:ocuupation_tags, "職種" %></div>
-         <div class="col-5"><%= f.collection_select(:ocuupation_tag_id, @ocuupation_tags, :id, :name, :include_blank => "--選択してください--") %></div>
-       </div>
+
      　<div class="field">
          <%= f.label :content, "ルーム説明"%><br>
          <%= f.text_area :content, class: "form-control" %>
