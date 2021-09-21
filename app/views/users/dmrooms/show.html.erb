@@ -1,8 +1,7 @@
 <div class="dmmessage-main row">
 
    <div class="dmmessage-left col-sm-2 text-center me-0">
-      <%# if @user.image.attached? %>
-      <% if true %>
+      <% if @user.image.attached? %>
         <%= image_tag @user.image.variant(resize:"150x150"), class:"image-radius" %><br>
       <% else %>
         <%= image_tag "noimage.png", size: "150x150", class:"image-radius" %><br>
@@ -20,41 +19,39 @@
       <% end %>
     </div>
     <div class="dmmessage-right col-sm-6">
-
-    <h2 style="text-align:center"><%="#{@user.name}さん"%></h2>
-    <div id="chats">
-      <% @dmmessages.each do |chat|%>
-        <%if chat.user_id==current_user.id%>
-          <div class="mycomment">
-            <p><%= chat.content %></p>
-          </div>
-        <%else%>
-          <div class="fukidasi">
-            <div class="faceicon">
-              <% if chat.user.image.attached? %>
-                <%= image_tag chat.user.image.variant(resize:"100x100"), class:"image-radius" %>
-              <% else %>
-                <%= image_tag "noimage.png", size: "100x100", class:"image-radius" %>
-              <% end %>
+      <h2 style="text-align:center"><%="#{@user.name}さん"%></h2>
+      <div id="chats">
+        <% @dmmessages.each do |chat|%>
+          <%if chat.user_id==current_user.id%>
+            <div class="mycomment">
+              <p><%= chat.content %></p>
             </div>
-            <div class="chatting">
-              <div class="says">
-                <p><%=chat.content%></p>
+          <%else%>
+            <div class="fukidasi">
+              <div class="faceicon">
+                <% if chat.user.image.attached? %>
+                  <%= image_tag chat.user.image.variant(resize:"100x100"), class:"image-radius" %>
+                <% else %>
+                  <%= image_tag "noimage.png", size: "100x100", class:"image-radius" %>
+                <% end %>
+              </div>
+              <div class="chatting">
+                <div class="says">
+                  <p><%=chat.content%></p>
+                </div>
               </div>
             </div>
-          </div>
+          <%end%>
         <%end%>
-      <%end%>
+      </div>
+      <%= form_with model: @dmmessage, url: users_dmmessages_path, id: "send-form", local: true do |f| %>
+        <%= f.text_field :content, id: "sentence", :placeholder => "メッセージを入力して下さい" , :size => 37 %>
+        <%= f.submit "送信", id: "send" %>
+        <%= f.hidden_field :dmroom_id, :value => @dmroom.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <br>
+        <%= render 'layouts/error_messages', model: f.object %>
+      <% end %>
     </div>
-    <%= form_with model: @dmmessage, url: users_dmmessages_path, id: "send-form", local: true do |f| %>
-      <%= f.text_field :content, id: "sentence", :placeholder => "メッセージを入力して下さい" , :size => 37 %>
-      <%= f.submit "送信", id: "send" %>
-      <%= f.hidden_field :dmroom_id, :value => @dmroom.id %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <br>
-      <%= render 'layouts/error_messages', model: f.object %>
-
-    <% end %>
-  </div>
-    </div>
+</div>
 
