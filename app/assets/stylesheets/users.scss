@@ -154,6 +154,10 @@
   border-radius: 5px;
 }
 
+.follow-btn {
+  width: 80%;
+}
+
 // ユーザー編集画面
 
 .user-edit {
@@ -179,4 +183,37 @@
 
 .user-introduction {
  width: 100%;
+}
+
+.image-radius {
+  border-radius: 50%;
+}
+
+@media only screen and (min-width:794px) and (max-width:1023px) {
+.card-container.card {
+    max-width: 100%;
+    padding: 40px 40px 20px 40px;
+}
+
+.my-relationship {
+  width: 90%;
+}
+
+.my-introduction {
+  width: 90%;
+}
+
+.follow-p {
+  font-size: 200%;
+}
+
+.follow-btn {
+  width: 100%;
+}
+
+.user-edit-main {
+  width: 90%;
+
+}
+
 }

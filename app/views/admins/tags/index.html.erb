@@ -1,0 +1,9 @@
+<div class="tag-index">
+  <div class="tag-content">
+    <p>タグ人気順</p>
+    <% @tags.each do |tag| %>
+      <%= link_to "##{tag.name}(#{tag.rooms.count})",  edit_admins_tag_path(tag) %>
+    <% end %>
+    <%= paginate @tags %>
+  </div>
+</div>
