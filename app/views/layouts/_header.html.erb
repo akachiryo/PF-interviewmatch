@@ -15,10 +15,10 @@
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ルーム一覧", users_rooms_path, class: "nav-link" %>
+                  <%= link_to "部屋一覧", users_rooms_path, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ルーム作成", new_users_room_path, class: "nav-link" %>
+                  <%= link_to "部屋作成", new_users_room_path, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
                   <% if unchecked_notifications.any? %>
@@ -88,8 +88,8 @@
                   <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
                     <li><%= link_to "マイページ", user_path(current_user), class: "nav-link" %></li>
                     <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
-                    <li><%= link_to "ルーム一覧", users_rooms_path, class: "nav-link" %></li>
-                    <li><%= link_to "ルーム作成", new_users_room_path, class: "nav-link" %></li>
+                    <li><%= link_to "部屋一覧", users_rooms_path, class: "nav-link" %></li>
+                    <li><%= link_to "部屋作成", new_users_room_path, class: "nav-link" %></li>
                     <li>
                       <% if unchecked_notifications.any? %>
                         <i class="fa fa-circle" style="color: #99FFCC;"></i>

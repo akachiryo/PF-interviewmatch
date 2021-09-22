@@ -16,41 +16,39 @@
 </div>
 <div class="profile-main">
   <div class="profile-left pt-5 pb-5">
-    <div class="my-relationship p-3">
-      <div class="col-sm-1"></div>
-      <div class="my-relationship-follow col-sm-2">
-        <p >フォロー中</p>
-        <p><%= user.followings.count %>人</p>
+    <div class="my-relationship text-center p-3">
+      <div class="my-relationship-follow text-center col-3 mt-4">
+        <p class="follow-p">フォロー中</p>
+        <p class="follow-p"><%= user.followings.count %>人</p>
       </div>
-      <div class="col-sm-1"></div>
-      <div class="my-relationship-follower col-sm-2">
-        <p>フォロワー</p>
-        <p><%= user.followers.count %>人</p>
+      <div class="my-relationship-follower col-3 mt-4">
+        <p class="follow-p">フォロワー</p>
+        <p class="follow-p"><%= user.followers.count %>人</p>
       </div>
-      <div class="my-relation-right col-sm-6">
+      <div class="my-relation-right col-6 text-center">
         <div class="follow-dm-feature">
           <% if current_user.id != user.id %>
             <div class="follow-btn text-center">
                 <% if current_user.following?(user) %>
                   <%= form_with url: users_relationship_path(Relationship.where(user_id: current_user, follow_id: user.id).pluck("id").slice(0)), method: :delete, local: true do |f| %>
-                    <%= f.submit "フォローを解除する", class: "btn btn-outline-danger mb-4" %>
+                    <%= f.submit "フォローを解除する", class: "btn btn-outline-danger mb-4 follow-btn" %>
                   <% end %>
                 <% else %>
                   <%= form_with model: relationship, url: users_relationships_path(follow_id: user.id), local: true do |f| %>
-                    <%= f.submit "       フォローする      ", class: "btn btn-outline-info" %>
+                    <%= f.submit "       フォローする      ", class: "btn btn-outline-info follow-btn" %>
                   <% end %>
               　<% end %>
             </div>
             <div class="text-center">
               <%= form_with model: @dmroom, url: users_dmrooms_path, local: true do |f| %>
                 <%= f.hidden_field :user_id, value: user.id %>
-                <%= f.submit "  チャットを始める  ", class: "btn btn-outline-primary text-center mb-0" %>
+                <%= f.submit "  チャットを始める  ", class: "btn btn-outline-primary text-center mb-0 follow-btn" %>
               <% end %>
             </div>
           <% else %>
             <div class="my-edit text-center pt-3">
-              <p><%= link_to "    　 編集する   　 ", edit_user_path(current_user), class: "btn btn-outline-secondary" %></p>
-              <p><%= link_to " スケジュール  ", users_schedules_path(current_user), class: "btn btn-outline-primary" %></p>
+              <p><%= link_to "    　 編集する   　 ", edit_user_path(current_user), class: "btn btn-outline-secondary follow-btn mt-3" %></p>
+              <p><%= link_to "   スケジュール   ", users_schedules_path(current_user), class: "btn btn-outline-primary follow-btn" %></p>
             </div>
           <% end %>
         </div>

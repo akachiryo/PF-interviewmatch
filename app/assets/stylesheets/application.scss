@@ -18,10 +18,15 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import "bootstrap";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kosugi&display=swap');
 
 *{
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Kosugi', sans-serif;
+
+}
+
+.margin {
+  padding: 7px 0 7px 0;
 }
 
 header {
@@ -49,7 +54,9 @@ text-decoration: none;
   text-decoration: none;
 }
 
-@media screen and (max-width:639px) {
+
+
+@media screen and (max-width:794px) {
 /*スマホ用のcssを記述*/
 .main-view-right {
    display:none;
@@ -60,9 +67,10 @@ text-decoration: none;
  .pc-display {
   display: none;
  }
+
 }
 
-@media only screen and (min-width:640px) and (max-width:1023px) {
+@media only screen and (min-width:794px) and (max-width:1023px) {
 /*tablet用のcssを記述*/
 .main-view-right {
    display:none;
