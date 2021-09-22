@@ -60,7 +60,7 @@ class Users::RoomsController < ApplicationController
   def create
     room = Room.new(room_params)
     room.user_id = current_user.id
-    tag_list = params[:room][:name].gsub(/　/," ").strip.split("#")
+    tag_list = params[:room][:name].gsub(/　/," ").strip.split("#").slice(1,2)
     if room.save
       room.save_tag(tag_list)
       user_room = UserRoom.new

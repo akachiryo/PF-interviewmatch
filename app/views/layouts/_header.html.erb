@@ -15,10 +15,10 @@
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ルーム一覧", users_rooms_path, class: "nav-link" %>
+                  <%= link_to "部屋一覧", users_rooms_path, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ルーム作成", new_users_room_path, class: "nav-link" %>
+                  <%= link_to "部屋作成", new_users_room_path, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
                   <% if unchecked_notifications.any? %>
@@ -39,13 +39,10 @@
                   <%= link_to "adminログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "時間指定一覧", admins_time_tags_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "職種一覧", admins_ocuupation_tags_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
                   <%= link_to "会員一覧", admins_users_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "タグ一覧", admins_tags_path, class: "nav-link" %>
                 </li>
               </ul>
             </div>
@@ -91,8 +88,8 @@
                   <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
                     <li><%= link_to "マイページ", user_path(current_user), class: "nav-link" %></li>
                     <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
-                    <li><%= link_to "ルーム一覧", users_rooms_path, class: "nav-link" %></li>
-                    <li><%= link_to "ルーム作成", new_users_room_path, class: "nav-link" %></li>
+                    <li><%= link_to "部屋一覧", users_rooms_path, class: "nav-link" %></li>
+                    <li><%= link_to "部屋作成", new_users_room_path, class: "nav-link" %></li>
                     <li>
                       <% if unchecked_notifications.any? %>
                         <i class="fa fa-circle" style="color: #99FFCC;"></i>
@@ -112,8 +109,7 @@
                   </a>
                   <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
                   <li> <%= link_to "adminログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
-                  <li><%= link_to "時間指定一覧", admins_time_tags_path, class: "nav-link" %></li>
-                  <li><%= link_to "職種一覧", admins_ocuupation_tags_path, class: "nav-link" %></li>
+                  <li><%= link_to "タグ一覧", admins_tags_path, class: "nav-link" %></li>
                   <li><%= link_to "会員一覧", admins_users_path, class: "nav-link" %></li>
                   </li>
                   </ul>

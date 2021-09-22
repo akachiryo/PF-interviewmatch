@@ -1,0 +1,17 @@
+<div class="user-edit">
+  <div class="user-edit-main card">
+    <%= form_with model: @tag, url: admins_tag_path(@tag),method: :patch,  local: true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :name, "タグ名", class:"mt-5" %>
+        <%= f.text_field :name, class:"form-control", autofocus: true %>
+      </div>
+
+      <div class="user-edit-btn text-center mb-3">
+        <%= f.submit "編集内容を保存", class: "btn btn-outline-success mt-3  me-5" %>
+        <%= link_to "タグを削除する", admins_tag_path(@tag), method: :delete, class: "btn btn-outline-danger mt-3" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

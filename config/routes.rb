@@ -23,8 +23,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :rooms
-    resources :time_tags
-    resources :ocuupation_tags
+    resources :tags, only: [:index, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
   end
 
