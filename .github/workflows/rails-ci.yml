@@ -7,7 +7,7 @@ name: Rails.ci
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ cicd ]
 
 jobs:
   run-lint:
@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: rspec result screenshots
-          
+
