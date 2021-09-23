@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :admins
 
   namespace :users do
+    get "tags/search" => "tags#search"
     get "rooms/search" => "rooms#search"
     get "rooms/finish" => "rooms#finish"
     resources :rooms

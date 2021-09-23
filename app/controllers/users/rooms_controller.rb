@@ -4,9 +4,7 @@ class Users::RoomsController < ApplicationController
 
   def index
     @rooms = Room.page(params[:page]).per(10).order(created_at: :desc)
-    @tags = Tag.joins(:room_tags).group(:tag_id).order('count(tag_id) desc').limit(8)
-
-
+    @tags = Tag.joins(:room_tags).group(:tag_id).order('count(tag_id) desc')
   end
 
   def show
