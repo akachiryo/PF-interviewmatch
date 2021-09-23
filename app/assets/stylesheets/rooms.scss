@@ -58,6 +58,7 @@
 .tag_list {
   text-decoration: none;
 }
+
 // Room詳細
 
 .room-detail {
@@ -283,9 +284,30 @@
 }
 
 .tag-list {
-  width: 90%;
-  margin: 0 auto 10px;
+  width: 95%;
 
+
+}
+
+.room-list {
+  margin: 0 auto;
+}
+
+.room-lists-title {
+  margin-left: 50px;
+}
+
+.room-lists-contents {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.room-view-under {
+margin-left: 50px;
+}
+
+.search-btn {
+  width: 180px;
 }
 
 }

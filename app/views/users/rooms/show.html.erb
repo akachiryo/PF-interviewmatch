@@ -5,7 +5,7 @@
 <% elsif UserRoom.where(user_id: current_user.id, room_id: @room.id, active: true).count == 1 && UserRoom.where(room_id: @room.id, active: false).count == 1 %>
 <div class="finish_main">
   <div class="finish-content">
-    <h2>相手の方部屋を退出しました。</h2>
+    <h2>相手の方が部屋を退出しました。</h2>
     <%= form_with url: users_user_room_path, method: :patch, local: true do |f| %>
       <%= f.hidden_field :room_id, :value => @room.id %>
       <%= f.submit "部屋を退出する", class: "btn btn-outline-info" %>

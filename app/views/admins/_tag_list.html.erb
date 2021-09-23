@@ -1,14 +1,13 @@
 <p class="fs-4 text-center">人気タグ</p>
 <div class="tag-list p-4">
-<!--%= form_with url: users_rooms_search_path, method: :get, local: true do |form| %>-->
-<!--  %= form.text_field :search, class: "form-control" %>-->
-<!--  %= form.submit 'Search', class: "btn btn-outline-secondary"%>-->
-<!--% end %>-->
-<!--<div class="input-group mb-3">-->
-<!--  <input type="text" class="form-control">-->
-<!--  <button class="btn btn-outline-secondary" type="button">Button</button>-->
-<!--</div>-->
+<%= form_with url: users_tags_search_path, method: :get, local: true do |form| %>
+<div class="row">
+
+  <p class="col-9"><%= form.text_field :keyword, class: "form-control"%></p>
+  <p class= "col-3"><%= form.submit '検索', class: "btn btn-outline-success search-btn"%></p>
+</div>
+<% end %>
   <% tags.each do |tag| %>
-    <%= link_to "##{tag.name}(#{tag.rooms.count})",  root_path,  class: "tag_list fs-5" %>
+    <%= link_to "##{tag.name}",  users_tags_search_path(keyword: tag.name), class: "tag_list" %>
   <% end %>
 </div>
