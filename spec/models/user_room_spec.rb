@@ -4,9 +4,7 @@ RSpec.describe UserRoom, type: :model do
   describe 'ユーザールームを新規作成する場合' do
     before do
       @user = FactoryBot.create(:user)
-      @time_tag = FactoryBot.create(:time_tag)
-      @ocuupation_tag = FactoryBot.create(:ocuupation_tag)
-      @room = FactoryBot.create(:room, time_tag_id: @time_tag.id, ocuupation_tag_id: @ocuupation_tag.id )
+      @room = FactoryBot.create(:room)
       @user_room = FactoryBot.build(:user_room)
     end
     context 'ユーザールームを新規作成が成功する場合' do

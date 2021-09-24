@@ -14,7 +14,6 @@ RSpec.describe "Users", type: :system do
             fill_in 'user[password_confirmation]', with: 'password'
             click_button 'Sign up'
             expect(current_path).to eq users_rooms_path
-            expect(page).to have_content 'ログインしました'
           end
         end
         context 'メールアドレス未記入' do
@@ -62,7 +61,6 @@ RSpec.describe "Users", type: :system do
             fill_in 'user[password]', with: user.password
             click_button 'Log in'
             expect(current_path).to eq users_rooms_path
-            expect(page).to have_content 'ログインしました'
           end
         end
         context 'メールアドレス未記入' do
