@@ -9,36 +9,79 @@ on:
   push:
     branches: [ cicd ]
 
+# jobs:
+#   run-lint:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Setup Ruby and install gems
+#         uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+#         with:
+#           bundler-cache: true
+#       # Add or Replace any other security checks here
+#       - name: Run security checks
+#         run: |
+#           bin/bundler-audit --update
+#           bin/brakeman -q -w2
+#       # Add or Replace any other Linters here
+#       - name: Run linters
+#         run: |
+#           bin/rubocop --parallel
+#       - name: bundle install
+#         run: |
+#           gem install bundler
+#           bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
+#       - name: run rspec
+#         run: bundle exec rspec
+#       - name: Archive rspec result screenshots
+#         if: failure()
+#         uses: actions/upload-artifact@v1
+#         with:
+#           name: rspec result screenshots
+
+# name: RailsTest
+# on: [push]
 jobs:
-  run-lint:
+  build:
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:5.7
+        env:
+          MYSQL_USERNAME: dbuser
+          MYSQL_ROOT_PASSWORD: dbpass
+    container:
+      image: ruby:2.6
+      env:
+        RAILS_ENV: test
+        MYSQL_HOST: db
+        MYSQL_USERNAME: dbuser
+        MYSQL_ROOT_PASSWORD: dbpass
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Ruby and install gems
-        uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
-        with:
-          bundler-cache: true
-      # Add or Replace any other security checks here
-      - name: Run security checks
-        - uses: actions/checkout@v1
-          - uses: actions/cache@v1
-            with:
-            path: vendor/bundle
-            key: bundle-${{ hashFiles('**/Gemfile.lock') }}
-      - name: Run linters
-        run: |
-          bin/rubocop --parallel
-      - name: bundle install
-        run: |
-          gem install bundler
-          bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
-      - name: run rspec
-        run: bundle exec rspec
-      - name: Archive rspec result screenshots
-        if: failure()
-        uses: actions/upload-artifact@v1
-        with:
-          name: rspec result screenshots
-
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: bundle-${{ hashFiles('**/Gemfile.lock') }}
+    - uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: yarn-${{ hashFiles('**/yarn.lock') }}
+    - name: Setup yarn and node
+      run: |
+        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+        echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+        apt-get update -qq
+        apt-get install -y nodejs yarn
+        yarn install
+    - name: Setup bundles
+      run: bundle install
+    - name: Setup Database
+      run: |
+        bundle exec rails db:create
+        bundle exec rails db:migrate
+    - name: Run tests
+      run: |
+        bundle exec rails rspec
