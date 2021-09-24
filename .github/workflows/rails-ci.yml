@@ -22,10 +22,11 @@ jobs:
           bundler-cache: true
       # Add or Replace any other security checks here
       - name: Run security checks
-        run: |
-          bin/bundler-audit --update
-          bin/brakeman -q -w2
-      # Add or Replace any other Linters here
+        - uses: actions/checkout@v1
+          - uses: actions/cache@v1
+            with:
+            path: vendor/bundle
+            key: bundle-${{ hashFiles('**/Gemfile.lock') }}
       - name: Run linters
         run: |
           bin/rubocop --parallel
