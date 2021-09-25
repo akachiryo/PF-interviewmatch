@@ -3,7 +3,8 @@
   <div class="main-view-left col-lg-5 ps-5 mt-3">
     <h1 class="heading">気軽に面接練習しませんか？</h1>
     <p>面接が苦手？このアプリを使えば、面接相手をマッチングできます。<br>時間・業種は選択できます。一緒に面接で成功しよう。</p>
-    <%= link_to "新規登録はこちら", new_user_registration_path, class: "btn btn-outline-info btn-lg heading-btn" %>
+    <%= link_to "新規登録はこちら", new_user_registration_path, class: "btn btn-outline-info btn-lg heading-btn mt-2" %>
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary btn-lg heading-btn mt-2" %>
   </div>
   <div class="main-view-right col-lg-4">
     <div class="text-center pb-5"><%= image_tag "touka.png", size: "500x350", class: "pb-5" %></div>
