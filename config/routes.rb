@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   post  'inquiry/confirm' => 'inquiry#confirm'
   post  'inquiry/thanks'  => 'inquiry#thanks'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
+  }
+
   devise_for :admins
 
   namespace :users do
@@ -33,5 +37,9 @@ Rails.application.routes.draw do
   resources :users, :only => [:show, :edit, :update]
   resources :room_chats, only: [:create]
   resources :rooms, only: [:create,:show]
+
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
 end
