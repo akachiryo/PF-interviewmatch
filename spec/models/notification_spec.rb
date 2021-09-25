@@ -7,9 +7,7 @@ RSpec.describe Notification, type: :model do
     @user = FactoryBot.create(:user)
     @dmroom = FactoryBot.create(:dmroom)
     @dmmessage = FactoryBot.create(:dmmessage,user_id: @user.id, dmroom_id: @dmroom.id)
-    @time_tag = FactoryBot.create(:time_tag)
-    @ocuupation_tag = FactoryBot.create(:ocuupation_tag)
-    @room = FactoryBot.create(:room, time_tag_id: @time_tag.id, ocuupation_tag_id: @ocuupation_tag.id )
+    @room = FactoryBot.create(:room)
     @user_room = FactoryBot.create(:user_room, room_id: @room.id, user_id: @user.id)
     @room_chat = FactoryBot.create(:room_chat, room_id: @room.id, user_id: @user.id)
 
@@ -130,6 +128,6 @@ RSpec.describe Notification, type: :model do
       expect(@notification).not_to be_valid
     end
 
-  
+
   end
 end

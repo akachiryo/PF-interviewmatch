@@ -3,7 +3,7 @@ class Users::RoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @rooms = Room.page(params[:page]).per(10).order(created_at: :desc)
+    @rooms = Room.includes([:tags], [:user]).page(params[:page]).per(10).order(created_at: :desc)
     @tags = Tag.joins(:room_tags).group(:tag_id).order('count(tag_id) desc')
   end
 

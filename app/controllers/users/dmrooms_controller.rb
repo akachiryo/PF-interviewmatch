@@ -4,7 +4,7 @@ class Users::DmroomsController < ApplicationController
 
   def show
     @dmroom = Dmroom.find(params[:id])
-    @dmmessages = @dmroom.dmmessages.limit(14).order('id DESC').reverse
+    @dmmessages = @dmroom.dmmessages.includes([:user]).limit(14).order('id DESC').reverse
     @dmmessage = Dmmessage.new
     @entries = @dmroom.entries
     @entries.each do |entry|
