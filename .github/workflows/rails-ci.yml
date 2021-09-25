@@ -6,8 +6,8 @@
 name: Rails.ci
 
 on:
-  pull_request:
-    branches: [ develop ]
+  push:
+    branches: [develop]
 
 # jobs:
 #   run-lint:
