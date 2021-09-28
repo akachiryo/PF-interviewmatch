@@ -1,0 +1,36 @@
+<% if UserRoom.where(room_id: @room.id, active: true).count == 2  && UserRoom.where(room_id: @room.id, active: true).where(user_id: current_user.id).present? %>
+  <%= render "users/rooms/chat_room", room: @room, room_chats: @room_chats, room_chat: @room_chat %>
+<% elsif UserRoom.where(room_id: @room.id, active: true).count == 1 && UserRoom.where(user_id: current_user.id, room_id: @room.id, active: false).count == 1 %>
+<div class="finish_main">
+  <div class="finish-content">
+    <h2>相手の方の評価が、まだ終わっていません。少々お待ちください。</h2>
+    <%= link_to "部屋一覧に戻る", users_rooms_path, local: true, class: "btn btn-outline-primary" %>
+  </div>
+</div>
+<% elsif UserRoom.where(user_id: current_user.id, room_id: @room.id, active: true).count == 1 && UserRoom.where(room_id: @room.id, active: false).count == 1 %>
+<div class="finish_main">
+  <div class="finish-content">
+    <h2>相手の方が部屋を退出しました。</h2>
+    <%= form_with url: users_user_room_path, method: :patch, local: true do |f| %>
+      <%= f.hidden_field :room_id, :value => @room.id %>
+      <%= f.submit "部屋を退出する", class: "btn btn-outline-info" %>
+    <% end %>
+  </div>
+</div>
+<% elsif UserRoom.where(room_id: @room.id, active: true).count == 1 && UserRoom.where(room_id: @room.id).count != 2 %>
+  <%= render "users/rooms/detail", room: @room %>
+<% elsif @room.active == false %>
+<div class="finish_main">
+  <div class="finish-content">
+    <h1>終了した部屋です</h1>
+    <%= link_to "部屋一覧に戻る", users_rooms_path, local: true, class: "btn btn-outline-primary" %>
+  </div>
+</div>
+<% else %>
+<div class="finish_main">
+  <div class="finish-content">
+    <h1>満室です</h1>
+    <%= link_to "部屋一覧に戻る", users_rooms_path, local: true, class: "btn btn-outline-primary" %>
+  </div>
+</div>
+<% end %>
