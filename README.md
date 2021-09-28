@@ -30,7 +30,6 @@ MennRenn(面接練習マッチングアプリ)
 - テスト（RSpec）
 - 検索、コメント、通知、タグ等
 
-- https://docs.google.com/spreadsheets/d/142KtB-SIKeLuhXgVI_3fRV6PX93IBfW87-pm1sbHodM/edit#gid=0
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
