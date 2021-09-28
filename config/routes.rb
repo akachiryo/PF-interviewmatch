@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root  'homes#top'
-  get 'homes/abput' => 'homes#about'
+  get 'homes/about' => 'homes#about'
   get   'inquiry/index' => 'inquiry#index'
   post  'inquiry/confirm' => 'inquiry#confirm'
   post  'inquiry/thanks'  => 'inquiry#thanks'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   devise_for :admins
 
   namespace :users do
+    get "tags/mysearch" => "tags#mysearch"
     get "tags/search" => "tags#search"
     get "rooms/search" => "rooms#search"
     get "rooms/finish" => "rooms#finish"

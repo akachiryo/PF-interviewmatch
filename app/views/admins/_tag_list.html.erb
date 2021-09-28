@@ -1,12 +1,15 @@
 <p class="fs-4 text-center">人気タグ</p>
 <div class="tag-list p-4">
-<%= form_with url: users_tags_search_path, method: :get, local: true do |form| %>
-<div class="row">
-  <p class="col-9"><%= form.text_field :keyword, class: "form-control"%></p>
-  <p class= "col-3"><%= form.submit '検索', class: "btn btn-outline-success search-btn"%></p>
-</div>
-<% end %>
-  <% tags.each do |tag| %>
-    <%= link_to "##{tag.name}",  users_tags_search_path(keyword: tag.name), class: "tag_list" %>
+  <%= form_with url: users_tags_search_path, method: :get, local: true do |form| %>
+    <div class="row">
+      <p class="col-9"><%= form.text_field :keyword, class: "form-control"%></p>
+      <p class= "col-3"><%= form.submit '検索', class: "btn btn-outline-success search-btn"%></p>
+    </div>
   <% end %>
+  <% if tags.present? %>
+    <% tags.each do |tag| %>
+      <%= link_to "##{tag.name}",  users_tags_search_path(keyword: tag.name), class: "tag_list" %>
+    <% end %>
+  <% end %>
+  <p><%= link_to "自分で作成した部屋", users_tags_mysearch_path, local: true, class: "btn btn-outline-primary mt-5" %></p>
 </div>
