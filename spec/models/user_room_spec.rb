@@ -16,16 +16,15 @@ RSpec.describe UserRoom, type: :model do
     end
     context 'ユーザールームを新規作成が失敗する場合' do
       it 'user_idが存在しない場合' do
-        @user_room.user_id = ""
+        @user_room.user_id = ''
         @user_room.room_id = @room.id
         expect(@user_room).not_to be_valid
       end
       it 'room_idが存在しない場合' do
         @user_room.user_id = @user.id
-        @user_room.room_id = ""
+        @user_room.room_id = ''
         expect(@user_room).not_to be_valid
       end
     end
-
   end
 end

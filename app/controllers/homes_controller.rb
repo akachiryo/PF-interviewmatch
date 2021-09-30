@@ -4,6 +4,5 @@ class HomesController < ApplicationController
     @tags = Tag.joins(:room_tags).group(:tag_id).order('count(tag_id) desc').limit(10)
   end
 
-  def about
-  end
+  def about; end
 end

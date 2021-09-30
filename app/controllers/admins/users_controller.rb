@@ -1,9 +1,8 @@
 class Admins::UsersController < ApplicationController
-
-before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   def index
-     @users = User.page(params[:page]).reverse_order
+    @users = User.page(params[:page]).reverse_order
   end
 
   def show
@@ -28,5 +27,4 @@ before_action :authenticate_admin!
   def user_params
     params.require(:user).permit(:name, :email, :is_deleted)
   end
-
 end

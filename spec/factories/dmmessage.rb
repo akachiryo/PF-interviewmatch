@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :dmmessage do
-    content { "a" }
+    content { 'a' }
   end
 end

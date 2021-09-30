@@ -1,5 +1,4 @@
 class Admins::RoomsController < ApplicationController
-
   before_action :authenticate_admin!
 
   def index
@@ -15,5 +14,4 @@ class Admins::RoomsController < ApplicationController
       render :index
     end
   end
-
 end
