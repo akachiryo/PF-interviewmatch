@@ -6,13 +6,13 @@ class Admins::TagsController < ApplicationController
   end
 
   def edit
-  @tag = Tag.find(params[:id])
+    @tag = Tag.find(params[:id])
   end
 
   def update
     @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
-      flash[:notice] = "タグ名を更新しました"
+      flash[:notice] = 'タグ名を更新しました'
       redirect_to admins_tags_path
     else
       render :edit
@@ -29,7 +29,8 @@ class Admins::TagsController < ApplicationController
   end
 
   private
-    def tag_params
-      params.require(:tag).permit(:name)
-    end
+
+  def tag_params
+    params.require(:tag).permit(:name)
+  end
 end

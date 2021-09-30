@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :room_chat do
-    message { "a" }
+    message { 'a' }
   end
 end

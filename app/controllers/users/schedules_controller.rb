@@ -1,5 +1,4 @@
 class Users::SchedulesController < ApplicationController
-
   def index
     @schedules = Schedule.where(user_id: current_user.id)
     @schedule = Schedule.new
@@ -21,7 +20,7 @@ class Users::SchedulesController < ApplicationController
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
-    redirect_to  users_schedules_path, notice:"削除しました"
+    redirect_to users_schedules_path, notice: '削除しました'
   end
 
   def edit
@@ -31,7 +30,7 @@ class Users::SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
-      redirect_to users_schedules_path, notice: "編集しました"
+      redirect_to users_schedules_path, notice: '編集しました'
     else
       render 'edit'
     end
@@ -42,5 +41,4 @@ class Users::SchedulesController < ApplicationController
   def schedule_params
     params.require(:schedule).permit(:user_id, :title, :content, :start_time)
   end
-
 end

@@ -15,15 +15,14 @@ RSpec.describe Entry, type: :model do
   end
   context 'entryの保存が失敗したとき' do
     it 'user_idが存在しないとき' do
-      @entry.user_id = ""
+      @entry.user_id = ''
       @entry.dmroom_id = 1
       expect(@entry).not_to be_valid
     end
     it 'dmroom_idが存在しないとき' do
       @entry.user_id = 1
-      @entry.dmroom_id = ""
+      @entry.dmroom_id = ''
       expect(@entry).not_to be_valid
     end
   end
-
 end
