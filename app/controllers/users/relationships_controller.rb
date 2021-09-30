@@ -1,5 +1,4 @@
 class Users::RelationshipsController < ApplicationController
-
   def create
     relationship = Relationship.new
     relationship.user_id = current_user.id
@@ -23,7 +22,7 @@ class Users::RelationshipsController < ApplicationController
   end
 
   def destroy
-   relationship = Relationship.find(params[:id])
+    relationship = Relationship.find(params[:id])
 
     if relationship.destroy
       flash[:success] = 'ユーザーのフォローを解除しました'
@@ -39,5 +38,4 @@ class Users::RelationshipsController < ApplicationController
       redirect_to ser_path(relationship.follow_id)
     end
   end
-
 end

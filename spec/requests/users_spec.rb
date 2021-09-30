@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   describe 'GET #index' do
-      let(:admin) { FactoryBot.create :admin }
-      let(:takashi) { FactoryBot.create :takashi }
-      let(:satoshi) { FactoryBot.create :satoshi }
-      before do
-        sign_in takashi
-        sign_in satoshi
-        sign_in admin
-      end
+    let(:admin) { FactoryBot.create :admin }
+    let(:takashi) { FactoryBot.create :takashi }
+    let(:satoshi) { FactoryBot.create :satoshi }
+    before do
+      sign_in takashi
+      sign_in satoshi
+      sign_in admin
+    end
     it 'リクエストが成功すること' do
       get admins_users_path
       expect(response.status).to eq 200
@@ -17,8 +17,8 @@ RSpec.describe "Users", type: :request do
 
     it 'ユーザー名が表示されていること' do
       get admins_users_path
-      expect(response.body).to include "Takashi"
-      expect(response.body).to include "Satoshi"
+      expect(response.body).to include 'Takashi'
+      expect(response.body).to include 'Satoshi'
     end
   end
 
@@ -54,31 +54,31 @@ RSpec.describe "Users", type: :request do
   end
 
   describe 'GET #edit' do
-   let(:takashi) { FactoryBot.create :takashi }
-   before do
-     sign_in takashi
-   end
+    let(:takashi) { FactoryBot.create :takashi }
+    before do
+      sign_in takashi
+    end
 
-   it 'リクエストが成功すること' do
-     get edit_user_url takashi
-     expect(response.status).to eq 200
-   end
+    it 'リクエストが成功すること' do
+      get edit_user_url takashi
+      expect(response.status).to eq 200
+    end
 
-   it 'ユーザー名が表示されていること' do
-     get edit_user_url takashi
-     expect(response.body).to include 'Takashi'
-   end
+    it 'ユーザー名が表示されていること' do
+      get edit_user_url takashi
+      expect(response.body).to include 'Takashi'
+    end
 
-   it 'メールアドレスが表示されていること' do
-     get edit_user_url takashi
-     expect(response.body).to include 'takashi@example.com'
-   end
+    it 'メールアドレスが表示されていること' do
+      get edit_user_url takashi
+      expect(response.body).to include 'takashi@example.com'
+    end
   end
 
   describe 'PATCH #update' do
     let(:takashi) { FactoryBot.create :takashi }
     before do
-     sign_in takashi
+      sign_in takashi
     end
 
     context 'パラメータが妥当な場合' do
@@ -95,15 +95,15 @@ RSpec.describe "Users", type: :request do
 
       it 'リダイレクトすること' do
         patch user_url takashi, params: { user: FactoryBot.attributes_for(:satoshi) }
-        expect(response).to redirect_to  user_path(takashi.id)
+        expect(response).to redirect_to user_path(takashi.id)
       end
     end
 
     context 'パラメータが不正な場合' do
-       let(:takashi) { FactoryBot.create :takashi }
-        before do
-         sign_in takashi
-        end
+      let(:takashi) { FactoryBot.create :takashi }
+      before do
+        sign_in takashi
+      end
       it 'リクエストが成功すること' do
         patch user_url takashi, params: { user: FactoryBot.attributes_for(:user, :invalid) }
         expect(response.status).to eq 302
@@ -125,7 +125,7 @@ RSpec.describe "Users", type: :request do
   describe 'PATCH #withdrawal' do
     let(:user) { FactoryBot.create :user }
     before do
-     sign_in user
+      sign_in user
     end
 
     it 'リクエストが成功すること' do

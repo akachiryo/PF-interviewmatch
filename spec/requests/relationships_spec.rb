@@ -1,43 +1,42 @@
 require 'rails_helper'
 
-RSpec.describe "Relationships", type: :request do
-  describe "POST #create" do
-    context "パラメーターが妥当な場合" do
+RSpec.describe 'Relationships', type: :request do
+  describe 'POST #create' do
+    context 'パラメーターが妥当な場合' do
       let(:user) { FactoryBot.create :user }
       before do
         sign_in user
       end
-      it "リクエストが成功する場合" do
+      it 'リクエストが成功する場合' do
         post users_relationships_url
         expect(response.status).to eq 302
       end
-      it "relationshipが作成された場合" do
+      it 'relationshipが作成された場合' do
         takashi = FactoryBot.create(:takashi)
         expect do
           post users_relationships_url
           FactoryBot.create(:relationship, user_id: user.id, follow_id: takashi.id)
         end.to change(Relationship, :count).by(1)
       end
-      it "作成後リダイレクトされた場合" do
+      it '作成後リダイレクトされた場合' do
         post users_relationships_url
         expect(response).to redirect_to users_rooms_finish_path
       end
     end
-    context "パラメーターが不当な場合" do
+    context 'パラメーターが不当な場合' do
       let(:user) { FactoryBot.create :user }
       before do
         sign_in user
       end
-      it "relationshipが作成されない場合" do
+      it 'relationshipが作成されない場合' do
         expect do
           post users_relationships_url
         end.to change(Relationship, :count).by(0)
       end
     end
-
   end
-  describe "DELETE #destroy" do
-    context "パラメーターが妥当な場合" do
+  describe 'DELETE #destroy' do
+    context 'パラメーターが妥当な場合' do
       let(:takashi) { FactoryBot.create :takashi }
       let(:satoshi) { FactoryBot.create :satoshi }
       it 'リクエストが成功すること' do
