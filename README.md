@@ -10,25 +10,44 @@
 ### ターゲットユーザ
 就活生、転職者
 
-## 機能・技術
-- ログイン機能(devise)
+## 機能
+- ユーザー登録、ログイン(devise)
+  - ユーザー
+  - 管理者
+- 画像投稿機能(refile)
+- ルーム機能
+- スケジュール管理機能(simple_calenda)
+- フォロー機能
+- DM機能
+- お問い合わせ機能
+- 通知機能
+- タグ機能
+- ページネーション機能(kaminari)
+
+## 技術
+### インフラ
+- Linux(CentOS)
+- Ruby 2.6.3
+- Ruby on Rails 5.2.5
+- MySQL 5.7
+- Nginx
+- Puma
+- AWS
+  - EC2
+  - VPC
+  - RDS
+  - Route53
+- GitActions（CI/CD）
+
+### 開発
 - レスポンシブデザイン（Flexbox,Boostrap）
 - 環境変数化（bash_profile）
-- テスト（Rspec）
+- テスト（RSpec）
 - N+1問題(bullet)
 - 可読性の高いコード(Rubocop)
 - デバッグ(pry-byebug)
-- GitActions（CI/CD）
-- DM、タグ、通知等
 
 機能・技術詳細は[こちら](https://docs.google.com/spreadsheets/d/142KtB-SIKeLuhXgVI_3fRV6PX93IBfW87-pm1sbHodM/edit?usp=sharing)
-
-## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
-- IDE：Cloud9
 
 ## 設計書
 ![ER図](https://user-images.githubusercontent.com/85982768/136347420-79a556ab-3542-432d-aa05-789b2e6c2654.png)
