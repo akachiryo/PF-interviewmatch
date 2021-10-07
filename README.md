@@ -32,7 +32,11 @@
 - IDE：Cloud9
 
 ## 設計書
-![ER図](https://imgur.com/gallery/xD28Q3P)
+![ER図](https://user-images.githubusercontent.com/85982768/136333736-c15be5e4-df28-4f20-9751-fc179bb41f88.PNG)
 - [ER図](https://drive.google.com/file/d/1nWENUMw2PwqOee9tHfykloUeg7Y1wXMW/view?usp=sharing)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
 - [詳細設計](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
+
+##インフラ構造図
+![ER図](https://user-images.githubusercontent.com/85982768/136333736-c15be5e4-df28-4f20-9751-fc179bb41f88.PNG)
+-[インフラ構造図](https://drive.google.com/file/d/1PJ7jegyAWn8Pz5R1UjNcNBBmPciJ0ihJ/view?usp=sharing)
