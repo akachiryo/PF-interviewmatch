@@ -22,10 +22,10 @@ MennRenn(面接練習マッチングアプリ)
 
 - ログイン機能(devise)
 - レスポンシブデザイン（Flexbox,Boostrap）
-- BEM記法
 - 環境変数化（bash_profile）
-- テスト（RSpec）
-- 検索、コメント、通知、タグ等
+- テスト（Rspec）
+- GitActions（CI/CD）
+- 検索、通知、タグ等
 
 ## 開発環境
 - OS：Linux(CentOS)
