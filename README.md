@@ -16,7 +16,7 @@
 - ユーザー登録、ログイン(devise)
   - ユーザー
   - 管理者
-- 画像投稿機能(refile)
+- 画像投稿機能(ActiveStorage)
 - ルーム機能
 - スケジュール管理機能(simple_calenda)
 - フォロー機能
