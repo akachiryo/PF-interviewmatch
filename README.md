@@ -37,5 +37,5 @@
 - [詳細設計](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
 
 ## インフラ構造図
-![インフラ構造図](https://user-images.githubusercontent.com/85982768/136346461-af1d008e-1539-4b4e-816d-135e3cb84bd8.png)
+![インフラ構造図]((https://user-images.githubusercontent.com/85982768/136348088-da65eea3-aad1-4cd4-826a-b76fe69d5eee.png)
 - [インフラ構造図](https://drive.google.com/file/d/1PJ7jegyAWn8Pz5R1UjNcNBBmPciJ0ihJ/view?usp=sharing)
