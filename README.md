@@ -10,9 +10,6 @@
 ### ターゲットユーザ
 就活生、転職者
 
-### 主な利用シーン
-就活前もしくは最中、面接の受け答えに自信がない、面接の回答例のヒントが欲しいとき
-
 ## 機能・技術
 - ログイン機能(devise)
 - レスポンシブデザイン（Flexbox,Boostrap）
@@ -23,6 +20,8 @@
 - デバッグ(pry-byebug)
 - GitActions（CI/CD）
 - DM、タグ、通知等
+
+機能・技術詳細は[こちら](https://docs.google.com/spreadsheets/d/142KtB-SIKeLuhXgVI_3fRV6PX93IBfW87-pm1sbHodM/edit?usp=sharing)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -37,6 +36,6 @@
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
 - [詳細設計](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
 
-##インフラ構造図
-![ER図](https://user-images.githubusercontent.com/85982768/136333736-c15be5e4-df28-4f20-9751-fc179bb41f88.PNG)
--[インフラ構造図](https://drive.google.com/file/d/1PJ7jegyAWn8Pz5R1UjNcNBBmPciJ0ihJ/view?usp=sharing)
+## インフラ構造図
+![インフラ構造図](https://user-images.githubusercontent.com/85982768/136346461-af1d008e-1539-4b4e-816d-135e3cb84bd8.png)
+- [インフラ構造図](https://drive.google.com/file/d/1PJ7jegyAWn8Pz5R1UjNcNBBmPciJ0ihJ/view?usp=sharing)
