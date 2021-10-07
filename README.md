@@ -1,31 +1,28 @@
-# PF-InterviewMatching
+# MennRenn 気軽に練習相手探せるアプリ
+サイトURLは[こちら](https://mennrenn.com/)
 
-## サイト概要
-MennRenn(面接練習マッチングアプリ)
-
-　１人ではなく誰かと面接練習がしたいとき、気軽に面接練習の相手をマッチングして見つけることができるアプリ
-面接練習をする条件を決め、面接練習の相手を探す。部屋の作成者と入室者が揃ったら、zoomを使い練習を始める。
-
-### サイトテーマ
-面接不安なら、「気軽に練習相手探せるMennRenn！」
+面接練習がしたいとき、**気軽に練習相手をマッチング**して見つけることができるアプリです。
+面接練習の条件（時間、業種等）を指定した部屋を作成し、マッチングする相手を探します。こちらから、条件に合う部屋を探すこともできます。
 
 ### テーマを選んだ理由
 　終身雇用が当たり前だった時代から、自分のスキルに見合った企業への転職が増加しており、日本の働き方が変化しています。転職活動するうえで、合否を大きく分けるのが面接です。「スキルはあるのに面接で失敗してしまった」という人も多いはずです。面接のために練習をしようと考えるも、１人で練習することが難しいという難点があります。その難点を、この「MennRenn」を使うことで、練習相手を見つけ、面接力を高めようというアプリです。このアプリを活用することで、就活・転職している方のサポートができればよいと考えております。
+ 
 ### ターゲットユーザ
 就活生、転職者
 
 ### 主な利用シーン
 就活前もしくは最中、面接の受け答えに自信がない、面接の回答例のヒントが欲しいとき
 
-
-## 機能
-
+## 機能・技術
 - ログイン機能(devise)
 - レスポンシブデザイン（Flexbox,Boostrap）
 - 環境変数化（bash_profile）
 - テスト（Rspec）
+- N+1問題(bullet)
+- 可読性の高いコード(Rubocop)
+- デバッグ(pry-byebug)
 - GitActions（CI/CD）
-- 検索、通知、タグ等
+- DM、タグ、通知等
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -34,4 +31,8 @@ MennRenn(面接練習マッチングアプリ)
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
+## 設計書
+![ER図](https://imgur.com/gallery/xD28Q3P)
+- [ER図](https://drive.google.com/file/d/1nWENUMw2PwqOee9tHfykloUeg7Y1wXMW/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
+- [詳細設計](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
